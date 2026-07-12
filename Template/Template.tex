@@ -1,0 +1,91 @@
+\documentclass[11pt]{article}
+
+% Page layout
+\usepackage[a4paper, margin=1in]{geometry}
+
+% Math packages
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+
+% Lists
+\usepackage{enumitem}
+
+% Links
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue]{hyperref}
+
+% Theorem environments
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[definition]{Example}
+\newtheorem{exercise}[definition]{Exercise}
+
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+% Number equations by section
+\numberwithin{equation}{section}
+
+% Common number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+% Common operators
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\spanv}{span}
+\DeclareMathOperator{\diam}{diam}
+
+\title{Mathematics Notes}
+\author{Hansaem Park}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Sequences}
+
+\begin{definition}
+A sequence $(x_n)$ in $\R$ converges to $L \in \R$ if for every $\varepsilon > 0$,
+there exists $N \in \N$ such that
+\[
+    n \geq N \implies |x_n - L| < \varepsilon.
+\]
+\end{definition}
+
+\begin{theorem}
+Every convergent sequence is bounded.
+\end{theorem}
+
+\begin{proof}
+Suppose that $(x_n)$ converges to $L$. Taking $\varepsilon = 1$, there exists
+$N \in \N$ such that
+\[
+    n \geq N \implies |x_n - L| < 1.
+\]
+Hence, for all $n \geq N$,
+\[
+    |x_n| \leq |x_n - L| + |L| < 1 + |L|.
+\]
+The remaining terms $x_1, \dots, x_{N-1}$ are finitely many, so they are bounded.
+Therefore, $(x_n)$ is bounded.
+\end{proof}
+
+\begin{remark}
+The main idea is that convergence controls the tail of the sequence, while the
+initial finitely many terms are automatically bounded.
+\end{remark}
+
+
+\end{document}
