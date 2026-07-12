@@ -1,0 +1,430 @@
+  \documentclass[11pt, a4paper]{article}
+
+% --- 필수 패키지 설정 ---
+\usepackage{kotex}          % 한국어 지원
+\usepackage{amsmath}        % 수식 작성 필수 패키지
+\usepackage{amssymb}        % 다양한 수학 기호 (\mathbb{R}, \mathbb{Z} 등)
+\usepackage{amsthm}         % theorem, proof 환경 설정
+\usepackage{geometry}       % 여백 조절
+\usepackage{hyperref}       % 하이퍼링크 생성
+
+% --- 사용자 정의 명령어 (Macro) ---
+% 자주 쓰는 긴 명령어를 짧게 줄여서 정의할 수 있다.
+\newcommand{\bbr}{\mathbb{R}} % 이제 본문에서 \bbr 만 입력해도 \mathbb{R} 이 출력됨
+\newcommand{\bbz}{\mathbb{Z}}
+\newcommand{\mcal}[1]{\mathcal{#1}} % 인자를 받는 매크로 예시 (\mcal{F} -> \mathcal{F})
+
+% --- 문서 여백 설정 ---
+\geometry{top=30mm, bottom=30mm, left=25mm, right=25mm}
+
+% --- 하이퍼링크 스타일 ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=cyan
+}
+
+% --- 수학 환경(Theorem Environments) 설정 ---
+% \theoremstyle{plain}: 정리, 보조정리 등에 사용
+% 보통 이름은 굵게, 본문은 이탤릭체로 출력된다.
+% 단, kotex 환경에서는 한글 본문이 보통체처럼 보일 수 있다.
+\theoremstyle{plain}
+\newtheorem{theorem}{정리}[section]      % 섹션별로 번호 매김 (예: 정리 1.1)
+\newtheorem{lemma}[theorem]{보조정리}
+\newtheorem{corollary}[theorem]{계}
+
+% \theoremstyle{definition}: 정의, 예제 등에 사용
+% 이름은 굵게, 본문은 보통체로 출력된다.
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{정의}
+\newtheorem{example}[theorem]{예제}
+\newtheorem{exercise}[theorem]{과제}
+
+% \theoremstyle{remark}: 참고 사항에 사용
+\theoremstyle{remark}
+\newtheorem*{remark}{참고}
+
+% --- 문서 정보 ---
+\title{\textbf{수학과 학생을 위한 \LaTeX\ 기초 튜토리얼}}
+\author{Junhyeok Byeon}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+이 문서는 \LaTeX\을 처음 접하는 수학과 학생들을 위한 기초 튜토리얼이다. 수학 문서 작성을 위해 필수적인 수학 환경의 개념, 패키지의 역할, 수식 입력 및 정렬 방법, 정의, 정리, 증명 환경의 사용법, 그리고 주석과 매크로의 기본 사용법을 다룬다.
+\end{abstract}
+
+\section{소개 및 튜토리얼 안내}
+
+\LaTeX\은 수학 및 과학 논문 작성의 표준 도구이다. 수식을 깔끔하게 표현하고, 번호 매기기 및 참조를 자동화할 수 있어 수학을 공부하고 연구하는 사람에게는 매우 유용한 도구이다.
+
+더 깊이 있는 학습을 원한다면 전 세계적으로 잘 알려진 다음 튜토리얼을 참고하시오.
+\begin{itemize}
+    \item \textbf{The Not So Short Introduction to \LaTeXe} (가장 유명한 입문서 중 하나)
+    \item \textbf{Overleaf Documentation}: \url{https://www.overleaf.com/learn}
+    \quad (검색 기능이 잘 되어 있음)
+\end{itemize}
+
+\LaTeX\은 괄호 하나, 기호 하나만 빠지거나 오타가 나도 컴파일 에러를 낼 수 있다. 이때는 먼저 컴파일 로그와 문제가 생긴 줄 근처를 확인하자. 원인을 찾기 어렵다면 에러 메시지와 문제가 생긴 코드를 함께 복사해서 ChatGPT나 Claude 같은 LLM에게 물어보는 것도 좋은 방법이다. 특정 기능을 구현하고 싶을 때도 LLM에게 물어보는 것이 도움이 될 때가 많다. \newline
+
+{\LaTeX}에 가장 빠르게 익숙해지는 방법은 직접 써 보는 것이다. 아래에서는 최소한의 설명과 함께, 수학 문서 작성에 자주 쓰이는 기본 문법을 소개한다.
+
+\section{패키지(Package)란?}
+
+이 문서의 소스 코드 맨 앞, 즉 프리앰블 영역을 보면 \verb|\usepackage{...}|라는 명령어들이 나열되어 있다.
+
+\LaTeX\은 기본적으로 제공하는 뼈대 기능 외에, 사용자가 원하는 특수한 기능, 예를 들어 복잡한 수식, 한국어 입력, 그림 삽입, 여백 조절 등을 추가할 수 있도록 \textbf{패키지}라는 확장 프로그램을 사용한다. 스마트폰에서 필요한 앱을 설치해 기능을 늘리는 것과 비슷하다.
+
+예를 들어, 수학과에서 필수적으로 쓰는 많은 기호와 증명 환경은 \verb|amsmath|, \verb|amssymb|, \verb|amsthm| 패키지를 불러와야 정상적으로 사용할 수 있다. 이 패키지들은 American Mathematical Society에서 만든 대표적인 수학 패키지들이다.
+
+컴파일 시 ``알 수 없는 명령어''라는 에러가 뜬다면, 필요한 패키지를 불러오지 않았을 가능성이 있다.
+
+\section{{\LaTeX}의 주석(Comment)}
+
+{\LaTeX}에서 퍼센트 기호 \verb|%|는 \textbf{주석(comment)}을 나타낸다.
+주석은 소스 코드 안에는 남아 있지만, 컴파일된 PDF에는 출력되지 않는다.
+
+예를 들어 다음과 같이 입력하면,
+
+\begin{verbatim}
+이 문장은 PDF에 출력된다. % 이 부분은 PDF에 출력되지 않는다.
+\end{verbatim}
+
+PDF에는 ``이 문장은 PDF에 출력된다.''까지만 나타난다.
+
+주석은 다음과 같은 경우에 매우 유용하다.
+\begin{itemize}
+    \item 나중에 다시 볼 설명을 코드 안에 남겨둘 때
+    \item 특정 문장이나 수식을 잠시 지우지 않고 비활성화할 때
+    \item 공동 작업자에게 소스 코드 안에서 메모를 남길 때
+    \item 긴 문서에서 각 부분의 역할을 표시할 때
+\end{itemize}
+
+예를 들어,
+
+\begin{verbatim}
+% 아래 수식은 이차방정식의 근의 공식이다.
+\[
+    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\]
+\end{verbatim}
+
+처럼 적으면, 첫 줄은 PDF에 출력되지 않고 소스 코드 안에만 남는다.
+
+또한 \verb|%|는 줄 끝의 불필요한 공백을 없애는 용도로도 쓰인다.
+다만 입문 단계에서는 우선 ``\verb|%| 뒤의 내용은 PDF에 출력되지 않는다''는 점만 기억하면 충분하다.
+
+\section{\LaTeX\ 기초와 수학 환경(Math Environment)}
+
+\LaTeX\을 처음 쓸 때 가장 먼저 알아야 하고 또 가장 낯선 개념이 바로 \textbf{수학 환경(Math Environment)}이다.
+
+일반적으로 한글이나 워드에서 하듯\footnote{이러한 일반 문서 작성 상태를 텍스트 모드라고 한다.}
+\verb|y=f(x)|라고 입력하면, 우리가 수학 책에서 보던 예쁜 수식 폰트($y=f(x)$)가 아니라 그냥 영어 알파벳 텍스트를 늘어놓은 것(y=f(x))처럼 보인다.
+
+수식을 제대로 입력하려면 일반적인 문장을 입력하는 텍스트 모드와 구분되는 별도의 수학 환경을 열고 그 안에 수식을 적어야 한다. 수학 환경을 여는 방법은 \ref{WritingMath}절에서 설명한다.
+
+수학 환경 안에서는 텍스트 모드와는 입력 규칙과 조판 방식이 다르므로 다음 사항을 주의해야 한다.
+\begin{itemize}
+    \item \textbf{띄어쓰기와 줄바꿈 무시:}
+    스페이스바를 여러 번 누르거나 엔터(Enter)를 쳐도 수식 안에서는 일반 텍스트처럼 띄어쓰기나 줄바꿈이 되지 않는다. 강제로 띄어쓰기를 하려면 \verb|\quad| 같은 명령어를 써야 하고, 여러 줄 수식에서 줄바꿈을 하려면 \verb|\\| 기호를 명시적으로 입력해야 한다.
+
+    \item \textbf{여닫기 필수:}
+    수식 모드를 여는 기호를 썼다면 반드시 짝이 맞는 기호로 닫아주어야 한다. 열어놓고 닫지 않거나 다른 기호로 닫으면 컴파일 에러가 발생할 수 있다.
+\end{itemize}
+
+\section{수식 입력의 기초와 정렬}\label{WritingMath}
+
+수학 환경은 수식의 배치와 번호 여부에 따라 여러 가지 환경으로 나뉜다.
+
+\subsection{인라인 수식과 기본 디스플레이 수식}
+
+\begin{itemize}
+    \item \textbf{인라인 수식(Inline Math):}
+    문장 속에 수식을 자연스럽게 끼워 넣을 때는 \verb|$수식$|과 같이 달러 기호 하나로 감싼다 (예시: 함수 $f(x) = x^2$은 연속함수이다.)
+
+    \item \textbf{디스플레이 수식(Display Math):}
+    수식을 별도의 줄에 중앙 정렬하여 크고 강조되게 쓸 때는 \verb|\[|와 \verb|\]| 기호를 사용하여 감싼다. 예를 들어 다음과 같이 입력한다.
+\end{itemize}
+
+\[
+    f(x) = x^2 + 1
+\]
+
+\subsection{위첨자, 아래첨자, 분수}
+
+수학에서 가장 자주 쓰는 문법 중 하나는 위첨자, 아래첨자, 분수이다.
+
+\begin{itemize}
+    \item \textbf{위첨자:} \verb|x^2|라고 쓰면 $x^2$가 출력된다.
+    \item \textbf{아래첨자:} \verb|x_i|라고 쓰면 $x_i$가 출력된다.
+    \item \textbf{위첨자와 아래첨자 동시 사용:} \verb|x_i^2|라고 쓰면 $x_i^2$가 출력된다.
+    \item \textbf{두 글자 이상을 첨자로 쓸 때:}
+    \verb|x_{ij}|처럼 중괄호를 사용해야 $x_{ij}$가 출력된다.
+    \verb|x_ij|라고 쓰면 $x_i j$처럼 해석될 수 있으므로 주의해야 한다.
+    \item \textbf{복잡한 위첨자:}
+    \verb|x^{n+1}|처럼 중괄호를 사용해야 $x^{n+1}$이 출력된다.
+    \item \textbf{분수:}
+    \verb|\frac{a}{b}|라고 쓰면 $\frac{a}{b}$가 출력된다.
+\end{itemize}
+
+예를 들어 다음과 같은 수식을 쓸 수 있다.
+\[
+    x_i^2 + x_{i+1}^2 = \frac{1}{n}
+\]
+
+\subsection{괄호 크기 조절: \textbackslash left와 \textbackslash right}
+
+분수가 들어간 식에서는 일반 괄호가 너무 작게 보일 수 있다.
+예를 들어
+\[
+    (\frac{a}{b})^2
+\]
+는 괄호가 분수에 비해 작게 보인다. 이에 따라 위첨자 또한 분자보다 낮은 곳에 위치한다.
+
+이럴 때는 \verb|\left|와 \verb|\right|를 사용하면 괄호 크기가 자동으로 조절된다.
+\[
+    \left(\frac{a}{b}\right)^2
+\]
+
+예를 들어 다음과 같이 쓴다.
+\begin{verbatim}
+\[
+    \left(\frac{a}{b}\right)^2
+\]
+\end{verbatim}
+
+\verb|\left|와 \verb|\right|는 반드시 짝을 이루어야 한다. 즉, \verb|\left(|를 썼다면 그에 대응하는 \verb|\right)|가 있어야 한다.
+
+\subsection{수식 안에서 일반 텍스트 쓰기: \textbackslash text}
+
+수식 안에서 ``if'', ``for all'', ``where'' 같은 일반 텍스트를 쓰고 싶을 때가 있다. 이때 그냥 수학 모드 안에 글자를 입력하면 변수처럼 이탤릭체로 처리될 수 있다.
+
+예를 들어,
+\[
+    x > 0 \text{ for all } x \in \bbr
+\]
+처럼 쓰려면 다음과 같이 입력한다.
+
+\begin{verbatim}
+\[
+    x > 0 \text{ for all } x \in \mathbb{R}
+\]
+\end{verbatim}
+
+\verb|\text{...}| 명령어는 \verb|amsmath| 패키지를 불러왔을 때 사용할 수 있다.
+
+\subsection{여러 줄 수식과 번호 매기기: equation과 align}
+
+가장 많이 쓰이는 수학 환경은 다음과 같다. 환경 이름 뒤에 \textbf{별표(\texttt{*})}를 붙이면 수식 번호가 생략되고, 별표가 없으면 우측에 수식 번호가 자동으로 붙는다.
+
+예를 들어, 다음 두 수식
+\begin{align}\label{eqn1}
+    1+1 = 2,
+\end{align}
+그리고
+\begin{align*}
+    1+1 = 2
+\end{align*}
+에 대하여,
+첫 번째 수식은 \verb|align|을 이용해서 출력한 것이고, 두 번째 수식은 \verb|align*|을 이용해서 출력한 것이다. 수식에 번호를 매기는 이유는 \ref{Referencing}절에서 설명한다.
+
+\verb|\tag|을 이용하면 수식 번호를 원하는 대로 직접 지정할 수 있다.
+예를 들면 아래와 같다.
+\begin{align}\tag{멋진 수식}\label{eqn2}
+    1+1 = 2.
+\end{align}
+
+\begin{enumerate}
+    \item \verb|equation| \textbf{환경:}
+    하나의 독립된 수식을 입력할 때 주로 쓰며, 자동으로 번호가 부여된다.
+    \verb|equation*| 환경을 쓰면 수식 번호가 나타나지 않는다.
+    이 경우 \verb|\[ ... \]|를 사용했을 때와 거의 동일한 출력 결과를 얻는다.
+
+    \item \verb|align| \textbf{환경:}
+    하나 이상의 수식을 정렬하기 위한 환경이다.
+    특히 증명 과정처럼 여러 줄로 이어지는 수식을 등호($=$) 등을 기준으로
+    깔끔하게 줄맞춤하고 싶을 때 자주 사용한다.
+    \begin{itemize}
+        \item 줄바꿈은 \verb|\\|로 지정한다.
+        \item 줄을 맞추고 싶은 기준 기호, 주로 등호 앞에
+        \textbf{앤퍼샌드(\texttt{\&})} 기호를 붙이면
+        그 위치를 기준으로 수직 정렬이 이루어진다.
+        예를 들어 \verb|&=|처럼 쓴다.
+    \end{itemize}
+\end{enumerate}
+
+아래는 \verb|align*| 환경을 사용해 등호 기준으로 정렬한 예시이다.
+\begin{align*}
+    (x+y)^2 &= (x+y)(x+y) \\
+            &= x^2 + xy + yx + y^2 \\
+            &= x^2 + 2xy + y^2
+\end{align*}
+
+\subsection{수학 연산자 입력 시 주의점: \textbackslash 의 사용}
+
+$\min$, $\sin$, $\log$ 같은 수학 기호를 수식 모드 안에서 그냥 \verb|min|이라고 치면 어떻게 될까?
+\LaTeX\은 이를 변수 $m$, $i$, $n$을 나열한 것처럼 인식해서 기울어진 이탤릭체 $min$으로 표기한다.
+
+이러한 수학 연산자나 함수 이름은 똑바로 선 로만체로 표기해야 한다. 따라서 기호 앞에 항상 백슬래시(\verb|\|)를 붙여서
+\verb|\min|, \verb|\sin|, \verb|\log|와 같이 적어주어야 명령어로 인식한다.
+
+\[
+    \min_{x \in \bbr} f(x), \quad \sin(\pi) = 0, \quad \log 1 = 0
+\]
+
+\subsection{특수 폰트와 벡터 기호}
+
+수학에서는 집합이나 특별한 대상을 나타내기 위해 다양한 폰트를 사용한다.
+\begin{itemize}
+    \item \textbf{칠판 볼드체(Blackboard Bold):}
+    실수 집합 $\mathbb{R}$, 정수 집합 $\mathbb{Z}$ 등을 나타낼 때는 \verb|\mathbb{R}|, \verb|\mathbb{Z}|와 같이 입력한다. 이 폰트를 쓰려면 \verb|amssymb| 패키지가 필요하다.
+
+    \item \textbf{필기체(Calligraphic):}
+    위상 공간, 시그마 대수, 또는 멱집합 등을 나타내는 $\mathcal{T}$, $\mathcal{F}$ 등은 \verb|\mathcal{T}|, \verb|\mathcal{F}|로 입력한다.
+
+    \item \textbf{벡터 기호:}
+    물리나 선형대수에서 문자 위에 화살표를 올려 벡터를 표현할 때는 \verb|\vec{v}|를 사용하면 $\vec{v}$가 출력된다.
+\end{itemize}
+
+\subsection{사용자 정의 명령어: 매크로 만들기}
+
+실수 집합 \verb|\mathbb{R}|처럼 자주 사용하는 수식 명령어는 매번 타이핑하기 번거롭다. 이럴 때는 문서의 시작 부분, 즉 프리앰블에 새로운 명령어를 정의해두면 편리하다.
+
+\begin{verbatim}
+\newcommand{\bbr}{\mathbb{R}}
+\end{verbatim}
+
+이제 본문에서는 단순히 \verb|\bbr|이라고만 쳐도 \LaTeX\이 알아서 $\mathbb{R}$로 변환해준다. 이 튜토리얼 문서의 소스 코드 맨 윗부분에도 이 매크로가 설정되어 있다.
+
+인자를 받는 매크로도 만들 수 있다.
+예를 들어 다음 명령어
+
+\begin{verbatim}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\end{verbatim}
+
+는 인자를 하나 받는 매크로를 정의한다. \verb|[1]|은 입력값을 하나 받겠다는 뜻이고, \verb|#1|은 그 입력값이 들어갈 자리를 의미한다.
+따라서 \verb|\mcal{F}|라고 쓰면 \verb|\mathcal{F}|와 같아져서 $\mathcal{F}$가 출력된다.
+
+\section{정리, 증명 환경과 상호 참조}\label{Referencing}
+
+수학과 문서에서는 정의, 정리, 증명을 명확히 구분하여 적는다. 이때 문서가 길어지면 ``앞의 식 1에서 보았듯이'' 하고 번호를 직접 타이핑했을 때, 중간에 새로운 수식이 추가되면 뒤의 번호들을 일일이 고쳐야 하는 대참사가 생긴다.
+
+이를 방지하기 위해 \verb|\label{이름}| 명령어로 수식이나 정리에 이름표를 달아두고, 본문에서는 다음과 같이 불러오는 방식을 쓴다.
+
+\begin{itemize}
+    \item \textbf{정리/정의 참조:}
+    \verb|\ref{이름}|을 사용한다. 예를 들어 정의 \ref{def:quadratic}는 추후 나올 이차방정식의 정의를 참조한다.
+
+    \item \textbf{수식 번호 참조:}
+    수식 번호는 주로 괄호 안에 적는다.
+    이때 \verb|\ref| 대신 \verb|\eqref{이름}|을 쓰면
+    자동으로 괄호가 쳐진 번호, 예를 들어 \eqref{eqn1}, \eqref{eqn2}가 출력되어 편리하다.
+\end{itemize}
+
+일반적으로 정리, 정의, 보조정리 등의 환경에서는 \verb|\label|을 환경 시작 직후에 두는 습관을 들이는 것이 좋다.\footnote{단, 참조하지 않는 수식에 불필요하게 사용하는 것은 지양하는 것이 좋다. 예를 들어
+\begin{align}
+	1+1&=2 \\
+	2+2&=4 \\
+	4+4&=8 \\
+	8+8&=16
+\end{align}
+의 수식 번호들은 실제로 인용할 것이 아니라면 출력할 필요가 없다.
+} 예를 들어 다음과 같이 쓴다. 예를 들어,
+
+
+\begin{verbatim}
+\begin{theorem}[정리 이름]\label{thm:example}
+...
+\end{theorem}
+\end{verbatim}
+
+아래는 \verb|\label|, \verb|equation|, \verb|align*|,
+그리고 \verb|\eqref| 기능을 종합적으로 활용하여
+이차방정식의 근의 공식을 정리하고 증명한 예시이다.
+
+\begin{definition}[이차방정식]\label{def:quadratic}
+$a, b, c$가 실수이고 $a \neq 0$일 때,
+다음과 같은 형태의 방정식을 \textbf{이차방정식}이라고 한다.
+\begin{equation}\label{eq:quadratic}
+    ax^2 + bx + c = 0
+\end{equation}
+\end{definition}
+
+\begin{theorem}[근의 공식]\label{thm:quadratic}
+방정식 \eqref{eq:quadratic}의 해 $x$는 다음과 같다.
+\[
+    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+\]
+\end{theorem}
+
+\begin{proof}
+방정식 \eqref{eq:quadratic}에서 $a \neq 0$이므로,
+양변을 $a$로 나누고 상수항을 우변으로 이항하면 다음과 같다.
+\[
+    x^2 + \frac{b}{a}x = -\frac{c}{a}.
+\]
+
+좌변을 완전제곱식으로 만들기 위해
+양변에 $\left(\frac{b}{2a}\right)^2$를 더한다.
+\begin{align*}
+    x^2 + \frac{b}{a}x + \left(\frac{b}{2a}\right)^2
+    &= -\frac{c}{a} + \left(\frac{b}{2a}\right)^2 \\
+    \left(x + \frac{b}{2a}\right)^2
+    &= -\frac{c}{a} + \frac{b^2}{4a^2} \\
+    \left(x + \frac{b}{2a}\right)^2
+    &= \frac{-4ac + b^2}{4a^2} \\
+    \left(x + \frac{b}{2a}\right)^2
+    &= \frac{b^2 - 4ac}{4a^2}.
+\end{align*}
+
+양변에 제곱근을 취하면,
+\[
+    x + \frac{b}{2a}
+    = \pm \frac{\sqrt{b^2 - 4ac}}{2a}.
+\]
+
+따라서 이항하여 정리하면 구하고자 하는 근의 공식을 얻는다.
+\[
+    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.
+\]
+\end{proof}
+
+\section{실전 팁: arXiv에서 실제 논문의 \LaTeX\ 소스 코드 분석하기}
+
+이 튜토리얼을 통해 기본적인 작법을 익혔다면, 실제 프로 수학자들이 어떻게 문서를 작성하는지 훔쳐보는(?) 것이 가장 빠르게 실력을 키우는 방법이다.
+
+\textbf{arXiv}(\url{https://arxiv.org/})는 전 세계 수학자, 물리학자들이 자신의 논문을 정식 출판 전에 미리 공개하는 아카이브(저장소)이다. 놀랍게도 이 곳의 많은 논문은 PDF 파일뿐만 아니라, 저자가 직접 작성한 \LaTeX\ 원본 소스 코드까지 누구나 다운로드할 수 있도록 공개되어 있다. 실제 연구자들이 어떻게 자신만의 매크로를 정의하고, 복잡한 수식을 정렬하며, 표를 그리는지 보고 배우는 것을 강력히 추천한다.
+
+\bigskip
+
+\noindent
+\textbf{[소스 코드 다운로드 및 확인 방법]}
+\begin{enumerate}
+    \item arXiv 홈페이지에서 관심 있는 주제나 논문의 페이지에 접속한다.
+    \item 우측의 \textbf{Access Paper} 섹션에서 \textbf{TeX Source}를 클릭하여 파일을 다운로드한다.
+    \item 다운로드된 파일에 확장자가 없는 경우가 있다.
+    이 파일은 보통 \verb|.tar.gz| 형식의 압축 파일이다.
+    파일 이름 끝에 \verb|.tar.gz|를 붙인 뒤 압축 해제 프로그램을 사용하면 압축을 풀 수 있다.
+    \item 압축을 풀면 논문의 뼈대인 \verb|.tex| 파일과 그림 파일들을 볼 수 있다.
+    \item \textbf{Overleaf 사용자 팁:}
+    압축을 풀 필요 없이, 다운로드한 파일 또는 \verb|.tar.gz|를 붙인 압축 파일 자체를
+    Overleaf의 \textbf{New Project $\rightarrow$ Upload Project} 메뉴를 통해 업로드하면
+    Overleaf가 압축을 풀고 논문 환경을 재현해 준다.
+\end{enumerate}
+
+\section{과제}
+
+ 본 문서를 참고하여,
+삼각함수의 합 공식과 같은 간단한 정리를
+\verb|\begin{theorem}|, \verb|\begin{proof}| 환경을 사용하여
+직접 \LaTeX\ 코드로 작성하고 컴파일된 PDF를 제출하라.
+
+증명 과정에서 수식 전개가 길어진다면
+\verb|align*| 환경과 \verb|&| 기호를 이용하여
+등호의 줄을 맞추어 볼 것.
+
+\end{document}
