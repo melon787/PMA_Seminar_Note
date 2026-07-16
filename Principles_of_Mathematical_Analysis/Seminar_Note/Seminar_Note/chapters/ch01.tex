@@ -1,0 +1,480 @@
+\section{The Real and Complex Number Systems}
+\subsection{Introduction}
+\begin{example}
+It is well known that there is no rational $p$ such that $p^2=2$. 
+
+Define $A \coloneqq \left\{p \in \Q^+ \mid p^2<2\right\}$ and $B \coloneqq \left\{p \in \Q^+ \mid p^2>2\right\}$. 
+Then $A$ contains no largest number and $B$ contains no smallest.
+\end{example}
+\begin{proof}
+It suffices to show that
+\[
+\forall p \in A, \, \exists q \in A \, s.t. \, p<q
+\]
+and 
+\[
+\forall p \in B, \, \exists q \in B \, s.t. \, q<p \mathrlap{.}
+\]
+
+For every $p \in \Q^+$, take 
+\begin{equation}\label{eq:q}
+    q = p - \frac{p^2-2}{p+2} = \frac{2p+2}{p+2}.
+\end{equation}
+Then
+\begin{equation}\label{eq:q^2-2}
+q^2-2 = \frac{2(p^2-2)}{(p+2)^2}.
+\end{equation}
+
+
+Hence,
+\begin{align*}
+p \in A &\implies p^2-2<0 \\
+&\implies p<q \text{ and } q^2<2 \tag*{$\because \eqref{eq:q}, \eqref{eq:q^2-2}$}\\
+&\implies q \in A
+\shortintertext{and}
+p \in B &\implies p^2-2>0  \\
+&\implies 0<q<p \text{ and } q^2>2  \tag*{$\because \eqref{eq:q}, \eqref{eq:q^2-2}$}\\
+&\implies q \in B. 
+\end{align*}
+
+
+We have shown the desired result.
+\end{proof}
+
+\subsection{Ordered Sets}
+\begin{definition}
+Let $S$ be a set. An \emph{order} on $S$ is a relation, denoted by $<$, with the following two properties:
+\begin{enumerate}
+\item[(i)] If $x \in S$ and $y \in S$ then one and only one of the statements 
+\[
+x<y, \qquad x=y, \qquad y<x
+\]
+is true.
+\item[(ii)] If $x,y,z \in S$, if $x<y$ and $y<z$, then $x<z$.
+\end{enumerate}
+\end{definition}
+\begin{definition}
+An \emph{ordered set} is a set $S$ in which an order is defined.
+\end{definition}
+\begin{definition}
+Suppose $S$ is an ordered set, and $E \subset S$. If there exists a $\beta \in S$ such that $x \leq \beta$ for every $x \in E$, we say that $E$ is \emph{bounded above}, and call $\beta$ an \emph{upper bound} of $E$.
+
+Lower bounds are defined in the same way (with $\geq$ in place of $\leq$).
+\end{definition}
+\begin{definition}
+Suppose $S$ is an ordered set, $E \subset S$, and $E$ is bounded above. Suppose there exists an $\alpha \in S$ with the following properties: 
+\begin{enumerate}
+    \item[(i)] $\alpha$ is an upper bound of $E$.
+    \item[(ii)] If $\gamma < \alpha$ then $\gamma$ is not an upper bound of $E$.
+\end{enumerate}
+
+Then $\alpha$ is called the \emph{least upper bound of $E$} [that there is at most one such $\alpha$ is clear from (ii)] or the \emph{supremum of $E$}, and we write \[\alpha=\sup E.\]
+
+The \emph{greatest lower bound}, or \emph{infimum}, of a set $E$ which is bounded below is defined in the same manner: The statement \[\alpha=\inf E\] means that $\alpha$ is a lower bound of $E$ and that no $\beta$ with $\beta > \alpha$ is a lower bound of $E$.
+\end{definition}
+\begin{definition}
+An ordered set $S$ is said to have the \emph{least-upper-bound property} if the following is true:
+
+If $E \subset S$, $E$ is not empty, and $E$ is bounded above, then $\sup E$ exists in $S$.
+\end{definition}
+\begin{remark}
+    The ordered set $\Q$ does not have the least-upper-bound property.
+\end{remark}
+
+The following theorem shows that every ordered set with the least-upper-bound property also has the greatest-lower-bound property.
+\begin{theorem}
+Suppose $S$ is an ordered set with the least-upper-bound property, $B \subset S$, $B$ is not empty, and $B$ is bounded below. Let $L$ be the set of all lower bounds of $B$. Then \[\alpha = \sup L\] exists in $S$, and $\alpha = \inf B$.
+
+In particular, $\inf B$ exists in $S$.
+\end{theorem}
+\begin{proof}
+Since $B$ is bounded below, $L$ is nonempty. 
+Let $x \in B$. Then $y \leq x$ for every $y \in L$. 
+Thus, every $x \in B$ is an upper bound of $L$. 
+Since $L$ is a nonempty subset of $S$ that is bounded above, by hypothesis, \[\alpha = \sup L\] exists in $S$.
+
+If $\gamma < \alpha$ then $\gamma$ is not an upper bound of $L$, hence $\gamma \notin B$. It follows that $\alpha \leq x$ for every $x \in B$. Thus, $\alpha \in L$.
+
+If $\alpha < \beta$ then $\beta \notin L$, since $\alpha$ is an upper bound of $L$.
+
+We conclude that $\alpha$ is a lower bound of $B$ (since $\alpha \in L$) and if $\alpha < \beta$ then $\beta$ is not a lower bound of $B$ (since $\beta \notin L$), which implies $\alpha = \inf B$.
+\end{proof}
+\begin{remark}
+Fix $x \in B$. Then $y \leq x$ for all $y \in L$. Thus, $\sup L \leq x$. Since the choice of $x \in B$ was arbitrary, we have 
+\[
+\sup L = \alpha \leq x \text{ for every } x \in B,
+\]
+which implies $\alpha$ is a lower bound of $B$. Hence, $\alpha \in L$.
+\end{remark}
+\subsection{Fields}
+\begin{definition}
+A \emph{field} is a set $F$ with two operations, called \emph{addition} and \emph{multiplication}, which satisfy the following so-called "field axioms" (A), (M), and (D):
+\begin{enumerate}
+\item[(A)] Axioms for addition
+\begin{itemize}
+    \item[(A1)] If $x \in F$ and $y \in F$, then their sum $x+y$ is in $F$.
+    \item[(A2)] Addition is commutative: $x+y=y+x$ for all $x,y \in F$.
+    \item[(A3)] Addition is associative: $(x+y)+z=x+(y+z)$ for all $x,y,z \in F$.
+    \item[(A4)] $F$ contains an element $0$ such that $0+x=x$ for every $x \in F$.
+    \item[(A5)] To every $x \in F$ corresponds an element $-x \in F$ such that \[x+(-x)=0.\]
+\end{itemize}
+\item[(M)] Axioms for multiplication
+\begin{itemize}
+    \item[(M1)] If $x \in F$ and $y \in F$, then their product $xy$ is in $F$.
+    \item[(M2)] Multiplication is commutative: $xy=yx$ for all $x,y \in F$.
+    \item[(M3)] Multiplication is associative: $(xy)z=x(yz)$ for all $x,y,z \in F$.
+    \item[(M4)] $F$ contains an element $1 \neq 0$ such that $1x=x$ for every $x \in F$.
+    \item[(M5)] If $x \in F$ and $x \neq 0$ then there exists an element $1/x \in F$ such that \[x \cdot (1/x) = 1.\]
+\end{itemize}
+\item[(D)] The distributive law
+\[
+x(y+z)=xy+xz
+\]
+holds for all $x,y,z \in F$.
+\end{enumerate}
+\end{definition}
+\begin{definition}
+An \emph{ordered field} is a \emph{field} $F$ which is also an \emph{ordered set}, such that
+\begin{itemize}
+    \item[(i)] $x+y<x+z$ if $x,y,z \in F$ and $y<z$.
+    \item[(ii)] $xy>0$ if $x \in F$, $y \in F$, $x>0$, and $y>0$.
+\end{itemize}
+\end{definition}
+
+\subsection{The Real Field}
+\begin{theorem}
+There exists an ordered field $\R$ which has the least-upper-bound property.
+
+Moreover, $\R$ contains $\Q$ as a subfield.
+\end{theorem}
+
+\begin{theorem}
+    \item[(a)] If $x \in \R$, $y \in \R$, and $x>0$, then there is a positive integer $n$ such that \[nx>y.\]
+    \item[(b)] If $x \in \R$, $y \in \R$, and $x<y$, then there exists a $p \in \Q$ such that $x<p<y$.
+\end{theorem}
+\begin{proof}
+\item[(a)] 
+Let $x,y \in \R$ and $x>0$. 
+Suppose to the contrary that $nx \leq y$ for each $n \in \N$ and define \[A \coloneqq \left\{nx \mid n \in \N \right\}.\] 
+Then $A$ is nonempty and bounded above by $y$. 
+Thus, the supremum of $A$ exists in $\R$. Put $\alpha = \sup A$.
+
+Since $x>0$, we have $\alpha - x < \alpha$, hence, $\alpha-x$ is not an upper bound of $A$. Therefore, $\alpha-x<mx$ for some $m \in \N$. 
+Then $\alpha < (m+1)x \in A$, which is a contradiction, since $\alpha$ is an upper bound of $A$.
+\item[(b)]
+Since Rudin's proof of part (b) is already explicit, we omit it here.
+\end{proof}
+\begin{theorem}\label{thm:nth_square_root}
+For every real $x>0$ and every integer $n>0$ there is one and only one positive real $y$ such that $y^n=x$.
+\end{theorem}
+This number $y$ is written $\sqrt[n]{x}$ or $x^{1/n}$. 
+\begin{proof}
+We omit the proof here.
+\end{proof}
+\begin{corollary}\label{thm:associative_nth_sqrt}
+If $a$ and $b$ are positive and real numbers and $n$ is a positive integer, then 
+\[
+(ab)^{\frac{1}{n}}=a^{\frac{1}{n}}b^{\frac{1}{n}}.
+\]
+\end{corollary}
+\begin{proof}
+We omit the proof here.
+\end{proof}
+\begin{lemma}\label{greatest integer}
+\item[(a)] If $E \subset \Z$ has the infimum, then $\inf E \in E$.
+\item[(b)] If $x \in \R$ then there exists an $n \in \Z$ such that \[n \leq x < n+1.\]
+\end{lemma}
+\begin{proof}
+\item[(a)] Let $\alpha = \inf E$.
+Suppose to the contrary that $\alpha \notin E$. 
+Since $\alpha+1$ is not a lower bound of $E$, choose an $x_0 \in E$ such that 
+\begin{equation}\label{ineq1}
+    \alpha<x_0<\alpha+1.
+\end{equation}
+Since $x_0$ is not a lower bound of $E$, choose an $x_1 \in E$ again such that
+\begin{equation}\label{ineq2}
+    \alpha<x_1<x_0.
+\end{equation}
+
+Subtracting $x_0$ from \eqref{ineq2}, we obtain $\alpha-x_0<x_1-x_0<0$. 
+Since $-1<\alpha-x_0$ from \eqref{ineq1}, it follows that $-1<x_1-x_0<0$.
+This contradicts the fact that $x_1-x_0 \in \Z$.
+We conclude that $\alpha \in E$.
+\item[(b)] Let $x \in \R$ and define $E \coloneqq \left\{n \in \Z \mid n>x \right\}$.
+By the Archimedean Property, $E$ is nonempty. 
+Since $E$ is bounded below by $x$, the infimum of $E$ exists in $\R$. 
+Since $E \subset \Z$, $\inf E$ is the least element of $E$ by (a).
+Thus, we have \[\inf E -1 \leq x < \inf E.\]
+Putting $n= \inf E -1 \in \Z$, we obtain the desired inequality.
+\end{proof}
+\begin{remark}[Decimals]
+Let $x>0$ be real. 
+Let $n_0$ be the largest integer such that $n_0 \leq x$, by lemma \ref{greatest integer}.
+Having chosen $n_0, n_1, \ldots, n_{k-1}$, let $n_k$ be the largest integer such that 
+\[
+n_0 + \frac{n_1}{10} + \cdots + \frac{n_k}{10^k} \leq x.
+\]
+Let $E$ be the set of these numbers 
+\begin{equation} \label{dec1}
+n_0 + \frac{n_1}{10} + \cdots + \frac{n_k}{10^k} \qquad (k=0, 1, 2, \ldots).
+\end{equation}
+Notice that $x$ is an upper bound of $E$ and if $k \in \N$ then
+\[
+n_0 + \frac{n_1}{10} + \cdots + \frac{n_k}{10^k} \leq x < n_0 + \frac{n_1}{10} + \cdots + \frac{n_k+1}{10^k}.
+\]
+Hence, we have
+\begin{equation} \label{ineq:error_term}
+x - n_0 - \frac{n_1}{10} - \cdots - \frac{n_k}{10^k} < \frac{1}{10^k} \text{ for } k  \in \N.
+\end{equation}
+
+Suppose $y<x$. Then by the Archimedean Property, there exists a positive integer $k$ such that $1/10^k<x-y$.
+From \eqref{ineq:error_term}, we obtain 
+\[
+x - n_0 - \frac{n_1}{10} - \cdots - \frac{n_k}{10^k}<x-y,
+\]
+hence 
+\[
+y<n_0 + \frac{n_1}{10} + \cdots + \frac{n_k}{10^k}.
+\]
+Therefore, $x=\sup E$. The decimal expansion of $x$ is 
+\begin{equation} \label{dec2}
+n_0 \cdot n_1 n_2 n_3 \cdots .
+\end{equation}
+
+Conversely, for any infinite decimal \eqref{dec2}, the set $E$ of numbers \eqref{dec1} is bounded above, and \eqref{dec2} is the decimal expansion of $\sup E$.
+\end{remark}
+\subsection{Exercises}
+\begin{exercise}
+Let $A$ be a nonempty set of real numbers which is bounded below.
+Let $-A$ be the set of all numbers $-x$, where $x \in A$.
+Prove that \[\inf A = -\sup (-A).\]
+\end{exercise}
+\begin{proof}
+Since $A$ is bounded below, the infimum of $A$ exists in $\R$. 
+If $a \in A$ then $\inf A \leq a$. Hence,
+\begin{equation}\label{ineq:ex_1_a}
+-a \leq -\inf A \text{ for all } a \in A,
+\end{equation}
+and it follows that $-A$ is bounded above. Thus, $\sup (-A)$ exists in $\R$.
+Since $- \inf A$ is an upper bound of $-A$ from \eqref{ineq:ex_1_a}, we have $\sup (-A) \leq -\inf A$, hence 
+\begin{equation}\label{ineq:ex_1_b}
+\inf A \leq -\sup(-A).
+\end{equation}
+Since $-a \leq \sup(-A)$ for every $a \in A$, we obtain $-\sup (-A) \leq a$ for all $a \in A$.
+Therefore, $-\sup(-A)$ is a lower bound of $A$ and 
+\begin{equation}\label{ineq:ex_1_c}
+-\sup(-A) \leq  \inf A.
+\end{equation}
+Combining \eqref{ineq:ex_1_b} and \eqref{ineq:ex_1_c}, we conclude that $\inf A = -\sup (-A)$.
+\end{proof}
+\begin{exercise}
+Fix $b>1$.
+\item[(a)] If $m$, $n$, $p$, $q$ are integers, $n>0$, $q>0$, and $r=m/n=p/q$, prove that 
+ \[
+ (b^m)^{1/n}=(b^p)^{1/q}.
+ \]
+ Hence it makes sense to define $b^r = (b^m)^{1/n}$.
+ \item[(b)] Prove that $b^{r+s} = b^r b^s$ if $r$ and $s$ are rational.
+ \item[(c)] If $x$ is real, define $B(x)$ to be the set of all numbers $b^t$, where $t$ is rational and $t \leq x$. 
+Prove that \[b^r = \sup B(r)\] when $r$ is rational.
+Hence it makes sense to define \[b^x = \sup B(x)\] for every real $x$.
+\item[(d)] Prove that $b^{x+y}=b^xb^y$ for all real $x$ and $y$.
+
+\end{exercise}
+\begin{proof}
+\item[(a)]
+Let $b^{mq}=b^{np}=x$.
+Since $n$ and $q$ are positive integers and $b>0$, by Theorem \ref{thm:nth_square_root}, we have 
+\[
+b^m=x^{1/q} \text{ and } b^p=x^{1/n}.
+\]
+It follows that
+\[
+(b^m)^{1/n}=(x^{1/q})^{1/n}=(x^{1/n})^{1/q}=(b^p)^{1/q},
+\]
+since $[(x^{1/q})^{1/n}]^{nq}=[(x^{1/n})^{1/q}]^{nq}=x$.
+\item[(b)]Let $m$, $n$, $p$, $q$ be integers and $n>0$, $q>0$ and let $r=m/n$ and $s=p/q$. 
+Then by Corollary \ref{thm:associative_nth_sqrt}, we obtain
+\begin{align*}
+b^{r+s}
+&=b^{\frac{m}{n}+\frac{p}{q}}
+=b^{\frac{mq+np}{nq}}\\
+&=\left(b^{mq+np}\right)^{\frac{1}{nq}}\\
+&=\left(b^{mq}b^{np}\right)^{\frac{1}{nq}}\\
+&=\left(b^{mq}\right)^{\frac{1}{nq}} \left(b^{np}\right)^{\frac{1}{nq}}\\
+&=b^{\frac{mq}{nq}} b^{\frac{np}{nq}}
+=b^{\frac{m}{n}} b^{\frac{p}{q}}
+=b^rb^s.
+\end{align*}
+\item[(c)]
+Note that by Theorem \ref{thm:nth_square_root}, $b^r>0$ if $b>1$ and $r$ is rational.
+
+Let $n$ be a positive integer and let $0<a<1$ be real. We first show that $0<a^{1/n}<1$.
+
+Suppose to the contrary that $a^{1/n} \geq 1$. Then we obtain 
+\[
+1 \leq \left(a^{1/n}\right)^n=a<1,
+\]
+a contradiction. Therefore, if $0<a<1$ then $0<a^{1/n}<1$, where $n$ is a positive integer.
+
+Suppose $r$ and $s$ are rational. 
+Let $m$, $n$, $p$, and $q$ be integers and let $n$ and $q$ be positive.
+Then we write $r=m/n$, $s=p/q$.
+
+Suppose $r<s$. Then
+\[
+r-s =\frac{m}{n}-\frac{p}{q} =\frac{mq-np}{nq} <0,
+\]
+hence
+\[
+0 < b^{mq-np} = \frac{1}{b^{np-mq}} < 1
+\]
+and 
+\[
+0 < b^{r-s} = b^{\frac{mq-np}{nq}} = \left(b^{mq-np}\right)^{1/nq} < 1.
+\]
+Thus, if $r<s$ then
+\[
+b^r = b^{(r-s)+s} = b^{r-s}b^s < b^s.
+\]
+
+If $t$ is rational and $t \leq r$ then $b^t \leq b^r$. 
+It follows that $B(r)$ is bounded above by $b^r$ and $\sup B(r)$ exists in $\R$.
+Since $b^r$ is an upper bound of $B(r)$, 
+\[
+\sup B(r) \leq b^r.
+\]
+Since $b^r \in B(r)$,
+\[
+b^r \leq \sup B(r).
+\]
+
+We conclude that $b^r = \sup B(r)$.
+
+\item[(d)]
+Let $t_1$ and $t_2$ be rational. 
+If $t_1 \leq x$ and $t_2 \leq y$ then $t_1+t_2 \leq x+y$.
+Thus, we have
+\[
+b^{t_1}b^{t_2} = b^{t_1+t_2} \leq \sup B(x+y) =b^{x+y}.
+\]
+
+Fix $t_1\leq x$. Then 
+\[
+b^{t_2} \leq b^{x+y}/b^{t_1} \text{ for all } t_2 \leq y.
+\]
+Hence, 
+\[
+b^y = \sup B(y) \leq b^{x+y}/b^{t_1}.
+\]
+Since the choice of $t_1$ was arbitrary,
+\[
+b^{t_1} \leq b^{x+y}/b^y \text{ for all } t_1 \leq x,
+\]
+and it follows that
+\[
+b^x = \sup B(x) \leq b^{x+y}/b^y.
+\]
+Therefore, we obtain
+\begin{equation} \label{ineq:Ch.1_ex2_(d)_1}
+    b^xb^y \leq b^{x+y}.
+\end{equation}
+
+Notice that 
+\[
+0 < b^{t_1} \leq b^x \text{ for every } t_1 \leq x
+\]
+and 
+\[
+0 < b^{t_2} \leq b^y \text{ for every } t_2 \leq y \mathrlap{.}
+\]
+Hence, for every $t_1 \leq x$ and $t_2 \leq y$, 
+\[
+b^{t_1+t_2} = b^{t_1}b^{t_2} \leq b^xb^y.
+\]
+
+Now, to obtain
+\begin{equation}\label{ineq:Ch.1_ex2_(d)_2}
+b^{x+y} = \sup B(x+y) \leq b^xb^y
+\end{equation}
+from above inequality, we need the following statement:
+\[
+b^x=\sup \left\{b^t \mid t \in \Q, t<x\right\}.
+\]
+
+Let us prove it. Notice that
+\[
+b^n-1=(b-1)(b^{n-1}+ \cdots + 1) \geq n(b-1)
+\]
+for any positive integer $n$. Put $c=b^{1/n}>1$. Then we have
+\[
+b-1 \geq n(b^{1/n}-1).
+\]
+Hence, if $t>1$ and $n>(b-1)/(t-1)$ then
+\[
+\frac{n(b^{1/n}-1)}{t-1} \leq \frac{b-1}{t-1} < n,
+\]
+and it follows that
+\[
+b^{1/n}<t.
+\]
+
+Note that if $t>1$ then $b^{1/n}<t$ for sufficiently large $n$.
+
+Let $B_0(x)=\left\{b^t \mid t \in \Q, t<x\right\}$.
+We need to show that $b^x$ is the supremum of $B_0(x)$. 
+It is clear that $b^x$ is an upper bound of $B_0(x)$.
+Thus, it remains to prove that if $y<b^x$ then $y$ is not an upper bound.
+
+Suppose $0<y<b^x$. Then $b^x/y >1$ and it follows that
+\[
+b^{1/n} <b^x/y
+\]
+for sufficiently large $n$. 
+Hence, we have
+\[
+y<\frac{b^x}{b^{1/n}}<b^x.
+\]
+By the density of rationals, choose a rational $t$ such that $x-(1/n)<t<x$. 
+Since $x<s<t+(1/n)$ for some rational $s$, 
+\[
+b^x \leq b^s <b^{t+(1/n)} = b^tb^{1/n}
+\]
+and
+\[
+y<\frac{b^x}{b^{1/n}}<b^t.
+\]
+Thus, $y$ is not an upper bound of $B_0(x)$ and therefore $b^x = \sup B_0(x)$.
+
+Now, let $t$ be a rational and let $t<x+y$.
+Pick $t_2 \in \Q$ such that $t-x<t_2<y$ and set $t_1=t-t_2$.
+Then for every $t \in \Q$ with $t<x+y$, there are rational $t_1<x$ and $t_2<y$ such that $t=t_1+t_2<x+y$, hence $b^t=b^{t_1+t_2}=b^{t_1}b^{t_2} \leq b^xb^y$.
+Thus, we obtain \eqref{ineq:Ch.1_ex2_(d)_2}.
+
+Combining \eqref{ineq:Ch.1_ex2_(d)_1} and \eqref{ineq:Ch.1_ex2_(d)_2}, we conclude that
+\[
+b^{x+y}=b^xb^y.
+\]
+\end{proof}
+\begin{exercise}
+Prove that no order can be defined in the complex field that turns it into an ordered field.
+\end{exercise}
+\begin{proof}
+Suppose to the contrary that there exists an order $<$ on $\C$ which turns $\C$ into an ordered field.
+Let $\mathbf{0}$ and $\mathbf{1}$ denote the additive and multiplicative identities of the complex field, respectively. 
+Then $\mathbf{0}=(0,0)$ and $\mathbf{1}=(1,0)$. 
+
+Note that $i = (0,1) \neq \mathbf{0}$.
+If $x \neq \mathbf{0}$ then $x^2 > \mathbf{0}$. 
+It follows that
+\begin{align*}
+    i^2=(0,1)(0,1)=(-1,0)>\mathbf{0}.
+\end{align*}
+Since $(-1,0)+(1,0)=\mathbf{0}$, $(-1,0)$ is the additive inverse of $(1,0)$. 
+Since $\mathbf{1}>\mathbf{0}$ and if $x>\mathbf{0}$ then $-x<\mathbf{0}$ in any ordered field, we obtain
+\[
+(-1,0)=-(1,0)=-\mathbf{1}<\mathbf{0}.
+\]
+
+This contradicts the Trichotomy Property. 
+\end{proof}

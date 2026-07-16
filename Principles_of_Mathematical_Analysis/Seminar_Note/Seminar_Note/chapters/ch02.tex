@@ -1,0 +1,85 @@
+\section{Basic Topology}
+\subsection{Finite, Countable, and Uncountable Sets}
+We omit this section here.
+\subsection{Metric Spaces}
+\begin{definition}
+A set $X$, whose elements we shall call \emph{points}, is said to be a \emph{metric space} if with any two points $p$ and $q$ of $X$ there is associated a real number $d(p,q)$, called the \emph{distance} from $p$ to $q$, such that
+\begin{enumerate}
+    \item[(a)] $d(p,q)>0$ if $p \neq q$; $d(p,p)=0$;
+    \item[(b)] $d(p,q)=d(q,p)$;
+    \item[(c)] $d(p,q) \leq d(p,r)+d(r,q)$, for any $r \in X$.  
+\end{enumerate}
+
+Any function with these three properties is called a \emph{distance function}, or a \emph{metric}.
+\end{definition}
+\begin{example}
+$\R^k$ is a metric space.
+\end{example}
+\begin{definition}
+By the \emph{segment} $(a,b)$ we mean the set of all real numbers $x$ such that $a<x<b$.
+
+By the \emph{interval} $[a,b]$ we mean the set of all real numbers $x$ such that $a \leq x \leq b$.
+
+Occasilnally we shall also encounter ``half-open intervals'' $[a,b)$ and $(a,b]$; the first consists of all $x$ such that $a \leq x < b$, the second of all $x$ such that $a < x \leq b$.
+
+If $a_i<b_i$ for $i=1, \ldots k$, the set of all points $\mathbf{x}=(x_1, \dots , x_k)$ in $\R^k$ whose coordinates satisfy the inequalities $a_i \leq x_i \leq b_i$ ($1 \leq i \leq k$) is called a \emph{k-cell}.
+Thus a 1-cell is an interval, a 2-cell is a rectangle, etc.
+
+If $\mathbf{x} \in \R^k$ and $r>0$, the \emph{open} (or \emph{closed}) \emph{ball} $B$ with center at $\mathbf{x}$ and radius $r$ is defined to be the set of all $\mathbf{y} \in \R^k$ such that $|\mathbf{y}-\mathbf{x}|<r$ (or $|\mathbf{y}-\mathbf{x}| \leq r$).
+
+We call a set $E \subset \R^K$ \emph{convex} if
+\[
+\lambda\mathbf{x}+(1-\lambda)\mathbf{y} \in E
+\]
+whenever $\mathbf{x} \in E$, $\mathbf{y} \in E$, and $0<\lambda<1$.
+\end{definition}
+\begin{example}
+Balls and k-cells are convex.
+\end{example}
+\begin{proof}
+If $|\mathbf{y}-\mathbf{x}|<r$, $|\mathbf{z}-\mathbf{x}|<r$, and $0<\lambda<1$, then
+\begin{align*}
+    |\lambda\mathbf{y}+(1-\lambda)\mathbf{z}-\mathbf{x}| &= |\lambda(\mathbf{y}-\mathbf{x})+\lambda\mathbf{x}+(1-\lambda)\mathbf{z}-\mathbf{x}| \\
+    &= |\lambda(\mathbf{y}-\mathbf{x})+(1-\lambda)(\mathbf{z}-\mathbf{x})| \\
+    &\leq \lambda|\mathbf{y}-\mathbf{x}|+(1-\lambda)|\mathbf{z}-\mathbf{x}| \\
+    &< \lambda r + (1-\lambda)r = r.
+\end{align*}
+Hence, balls are convex.
+
+Let $A \subset \R^k$ be a k-cell and let $\mathbf{x},\mathbf{y} \in A$ and $0<\lambda<1$. 
+We write $\mathbf{x}=(x_1, \ldots x_k)$, $\mathbf{y}=(y_1, \ldots, y_k)$ with
+\[
+a_i<b_i \text{ and } \mathbf{x}, \mathbf{y} \in [a_i,b_i] \text{ for } i=1, \ldots, k.
+\]
+If $x, y \in [a,b]$ with $a<b$ and $0<\lambda<1$ then
+\[
+{\lambda}a \leq {\lambda}x \leq {\lambda}b,
+\]
+and
+\[
+(1-\lambda)a \leq (1-\lambda)y \leq (1-\lambda)b,
+\]
+hence 
+\[
+a \leq {\lambda}x+(1-\lambda)y \leq b.
+\]
+It follows that each $[a_i, b_i]$ ($1 \leq i \leq k$) is convex.
+
+Therefore, every k-cell is convex.
+\end{proof}
+\begin{definition}
+    Let $X$ be a metric space. All points and sets mentioned below are understood to be elements and subsets of $X$.
+\begin{enumerate}
+\item[(a)] \emph{A neighborhood} of $p$ is a set $N_r(p)$ consisting of all $q$ such that $d(p,q)<r$, for some $r>0$.
+The number $r$ is called the \emph{radius} of $N_r(p)$.
+\item[(b)] A point $p$ is a \emph{limit point} of the set $E$ if \emph{every} neighborhood of $p$ contains a point $q \neq p$ such that $q \in E$.
+\item[(c)] If $p \in E$ and $p$ is not a limit point of $E$, then $p$ is called an \emph{isolated point} of $E$.
+\item[(d)] $E$ is closed if every limit point of $E$ is a point of $E$.
+\item[(e)] A point $p$ is an \emph{interior} point of $E$ if there is a neighborhood $N$ of $p$ such that $N \subset E$.
+\item[(f)] $E$ is \emph{open} if evefy point of $E$ is an interior point of $E$.
+\item[(g)] The \emph{complement} of $E$ (denoted by $E^c$) is the set of all points $p \in X$ such that $p \notin E$.
+\item[(h)] $E$ is \emph{perfect} if $E$ is closed and if every point of $E$ is a limit point of $E$.
+\item[(i)] $E$ is \emph{bounded} if there is a real number $M$ and a point $q \in X$ such that $d(p,q)<M$ for all $p \in E$.    
+\item[(j)] $E$ is \emph{dense in $X$} 
+\end{enumerate}
+\end{definition}
