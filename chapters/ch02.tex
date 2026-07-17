@@ -74,7 +74,7 @@ Therefore, every k-cell is convex.
 The number $r$ is called the \emph{radius} of $N_r(p)$.
 \item[(b)] A point $p$ is a \emph{limit point} of the set $E$ if \emph{every} neighborhood of $p$ contains a point $q \neq p$ such that $q \in E$.
 \item[(c)] If $p \in E$ and $p$ is not a limit point of $E$, then $p$ is called an \emph{isolated point} of $E$.
-\item[(d)] $E$ is closed if every limit point of $E$ is a point of $E$.
+\item[(d)] $E$ is \emph{closed} if every limit point of $E$ is a point of $E$.
 \item[(e)] A point $p$ is an \emph{interior} point of $E$ if there is a neighborhood $N$ of $p$ such that $N \subset E$.
 \item[(f)] $E$ is \emph{open} if evefy point of $E$ is an interior point of $E$.
 \item[(g)] The \emph{complement} of $E$ (denoted by $E^c$) is the set of all points $p \in X$ such that $p \notin E$.
@@ -85,7 +85,25 @@ The number $r$ is called the \emph{radius} of $N_r(p)$.
 \end{definition}
 
 \begin{theorem}
-    If p is a limit point of a set $E$, then every neighborhood of p contains infinitely many points of $E$.
+    Every neighborhood is an open set.
+\end{theorem}
+\begin{proof}
+Consider a neighborhood $E=N_r(p)$, and let $q$ be any point of $E$.
+Then choose an $h>0$ such that
+\[
+d(p,q)=r-h.
+\]
+If $s \in N_h(q)$ then
+\[
+d(p,s) \leq d(p,q)+d(q,s) < r-h+h=r,
+\]
+and it follows that $N_h(q) \subset E$. 
+Thus there is a neighborhood of $q$ that is a subset of $E$.
+Therefore, every $q \in E$ is an interior point of $E$.
+We conclude that $E$ is an open set.
+\end{proof}
+\begin{theorem}
+    If $p$ is a limit point of a set $E$, then every neighborhood of $p$ contains infinitely many points of $E$.
 \end{theorem}
 
 \begin{proof}
@@ -105,4 +123,74 @@ N_r(p) \cap E \setminus \{p\} \subset N \cap E \setminus \{p\} = \{q_1, \ldots, 
 \]
 $N_r(p)$ contains no element $q \neq p$ in $E$ (notice $N_r(p) \cap E \setminus \{p\}$ is empty).
 Thus, $p$ is not a limit point of $E$. This is a contradiction.
+\end{proof}
+ \begin{corollary}
+    A finite point set has no limit points.
+ \end{corollary}
+
+ \begin{theorem}
+Let $\{E_{\alpha}\}$ be a (finite or infinite) collection of sets $E_{\alpha}$. 
+Then
+\begin{equation}
+    \left(\bigcup_{\alpha}E_{\alpha}\right)^c = \bigcap_{\alpha} \left(E_{\alpha}^c\right).
+\end{equation}
+ \end{theorem}
+ \begin{proof}
+We have
+\begin{align*}
+x \in \left(\bigcup_{\alpha}E_{\alpha}\right)^c &\implies x \notin \left(\bigcup_{\alpha}E_{\alpha}\right) \\ 
+&\implies \forall \alpha, x \notin E_{\alpha} \tag*{($\because$ negation of the definition)} \\
+&\implies \forall \alpha, x \in E_{\alpha}^c \\
+&\implies x\in \bigcap_{\alpha} E_{\alpha}^c. \\
+\intertext{Hence $\left(\bigcup_{\alpha}E_{\alpha}\right)^c \subset \bigcap_{\alpha} \left(E_{\alpha}^c\right)$.
+Since}
+    x \in \bigcap_{\alpha} \left(E_{\alpha}^c\right) &\implies \forall \alpha, x \in E_{\alpha}^c \\
+    &\implies \forall \alpha, x \notin E_{\alpha} \\
+    &\implies x \notin \bigcup_{\alpha} E_{\alpha} \tag*{($\because$ negation of the definition)} \\
+    &\implies x \in \left(\bigcup_{\alpha}E_{\alpha}\right)^c,
+\end{align*}
+we obtain the reverse. This establishes the theorem.
+ \end{proof}
+ \begin{theorem}
+    A set $E$ is oopen if and only if its complement is closed.
+ \end{theorem}
+ \begin{proof}
+First, suppose $E^c$ is closed. Choose $x \in E$. 
+Then $x \notin E^c$, and $x$ is not a limit point of $E^c$, since every limit point of $E^c$ is a point of $E^c$ (contrapositive).
+Hence there exists a neighborhood $N$ of $x$ such that $E^c \cap N$ is empty, that is, $N \subset E$.
+Thus $E$ is open.
+
+Next, suppose $E$ is open. 
+Let $x$ be a limit point of $E^c$.
+Then every neighborhood of $x$ contains a point of $E^c$, hence there is no neighborhood $N$ of $x$ such that $N \subset E$.
+Thus, $x$ is not an interior point of $e$ and therefore $x \notin E$, since $E$ is open.
+It follows that if $x$ is a limit point of $E^c$ then $x \notin E$, hence $x \in E^c$.
+Therefore, $E^c$ is closed.
+ \end{proof}
+
+ \begin{corollary}
+    A set $F$ is closed if and only if its complement is open.
+ \end{corollary}
+
+ \begin{theorem} 
+    \item[(a)] For any collection $\{G_{\alpha}\}$ of open sets, $\bigcup_{\alpha}G_{\alpha}$ is open.
+    \item[(b)] For any collection  $\{F_{\alpha}\}$ of closed sets, $\bigcap_{\alpha}F_{\alpha}$ is closed.
+    \item[(c)] For any finite collection $G_1, \ldots G_n$ of open sets, $\bigcap_{i=1}^nG_i$ is open.
+    \item[(d)] For any finite collection $F_1, \ldots, F_n$ of closed sets, $\bigcup_{i=1}^nF_i$ is closed.
+ \end{theorem}
+\begin{proof}
+Put $G=\bigcup_{\alpha}G_{\alpha}$. Then
+
+\begin{align*}
+    x \in G &\implies \exists\alpha \, s.t. \, x \in G_\alpha \\
+    &\implies x \text{ is an interior point of } G_\alpha \\
+    &\implies \exists r_0>0 \, s.t. \, N_{r_0}(x)\subset G_{\alpha} \\
+    &\implies \exists r_0>0 \, s.t. \, N_{r_0}(x)\subset G.\\
+\end{align*}
+Hence, every $x \in G$ is an interior point of $G$ and it follows that $G$ is open. 
+
+(b) follows from (a), Theorem 2.22, and Theorem 2.23. We see that
+\begin{align*}
+    F_{\alpha} \text{ is closed} &\implies F_{\alpha}^c 
+\end{align*}
 \end{proof}
