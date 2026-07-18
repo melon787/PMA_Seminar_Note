@@ -270,7 +270,7 @@ Suppose $E \subset Y \subset X$, where $X$ is a metric space.
 We say that $E$ is \emph{open relative to $Y$} if to each $p \in E$ there is associated an $r>0$ such that $q \in E$ whenever $d(p,q)<r$ and $q \in Y$.
 \end{remark}
 
-\begin{theorem}
+\begin{theorem}\label{thm:open-relative}
 Suppose $Y \subset X$.
 A subset $E$ of $Y$ is open relative to $Y$ if and only if $E= Y \cap G$ for some open subset $G$ of $X$.
 \end{theorem}
@@ -293,7 +293,26 @@ Since Rudin's proof is already explicit, we omit it here.
 \begin{theorem}
 Suppose $K \subset Y \subset X$. Then $K$ is compact relative to $X$ if and only if $K$ is compact relative to $Y$.
 \end{theorem}
+\begin{proof}
+Suppose $K$ is compact relative to $X$, and let $\{V_{\alpha}\}$ be a collection of sets, open realtive to $Y$, such that $K \subset \bigcup_{\alpha}V_{\alpha}$.
+By theorem \ref{thm:open-relative}, there are sets $G_{\alpha}$, open relative to $X$, such that $V_{\alpha} = Y \cap G_{\alpha}$, for all $\alpha$;
+and since $K$ is compact relative to $X$, we have
+\begin{equation}\label{eq:open_cover__relative_to_X}
+K \subset G_{\alpha_1} \cup \cdots \cup G_{\alpha_n}
+\end{equation}
+for some choice of finitely many indices $\alpha_1, \ldots, \alpha_n$.
+If $K \subset Y$ then $K \cap Y = K$.
+Hence \eqref{eq:open_cover__relative_to_X} implies
+\begin{equation}\label{eq:open_cover_relative_to_Y}
+    K = K \cap Y \subset (G_{\alpha_1} \cup \cdots \cup G_{\alpha_n}) \cap Y = V_{\alpha_1} \cup \cdots \cup V_{\alpha_n}.
+\end{equation}
+Since $\{V_{\alpha}\}$ was arbitrary open cover (relative to $Y$), \eqref{eq:open_cover_relative_to_Y} proves that $K$ is copmact relative to $Y$.
+Conversely, suppose $K$ is compact relative to $Y$, let $\{G_{\alpha}\}$ be a collection of open subsets of $X$ which covers $K$, and put $V_{\alpha} = Y \cap G_{\alpha}$.
+Then \eqref{eq:open_cover_relative_to_Y} will hold for some choice of $\alpha_1, \ldots, \alpha_n$;
+and since $V_{\alpha} \subset G_{\alpha}$, \eqref{eq:open_cover_relative_to_Y} implies \eqref{eq:open_cover__relative_to_X}.
 
+This completees the proof.
+\end{proof}
 \subsection*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 
