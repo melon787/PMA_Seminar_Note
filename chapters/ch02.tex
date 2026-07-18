@@ -277,3 +277,63 @@ A subset $E$ of $Y$ is open relative to $Y$ if and only if $E= Y \cap G$ for som
 \begin{proof}
 Since Rudin's proof is already explicit, we omit it here.
 \end{proof}
+
+\subsection{Compact Sets}
+\begin{definition}
+    By an \emph{open cover} of a set $E$ in a metric space $X$ we mean a collection $\{G_{\alpha}\}$ of open subsets of $X$ such that $E \subset \bigcup_{\alpha}G_{\alpha}$.
+\end{definition}
+\begin{definition}
+    A subset $K$ of a metric space $X$ is said to be \emph{compact} if every open cover of $K$ contains a \emph{finite} subcover.
+
+    More explicitly, the requirement is that if $\{G_{\alpha}\}$ is an open cover of $K$, then there are finitely many indices $\alpha_1, \ldots, \alpha_n$ such that
+    \[
+    K \subset G_{\alpha_1} \cup \cdots \cup G_{\alpha_n}.
+    \]
+\end{definition}
+
+\subsection*{Exercises}
+\addcontentsline{toc}{section}{Exercises}
+
+\begin{exercise}
+Let $E'$ be the set of all limit points of a set $E$. 
+Prove that $E'$ is closed.
+Prove that $E$ and $\overline{E}$ have the same limit points. (Recall that $\overline{E}=E \cup E'$.)
+Do $E$ and $E'$ always have the same limit points?
+\end{exercise}
+
+\begin{proof}
+Let $p$ be a limit point of $E'$ and let $N$ be any neighborhood of $p$.
+Then $N$ contains a point $q \neq p$ such that $q \in E'$.
+Since $N$ is open, there exists a neighborhood $N_q$ of $q$ such that $N_q \subset N$.
+Without loss of generality, assume that $N_q$ does not contain $p$.
+For if $p \in N_q$ then we take $r=d(p,q)>0$, hence $p \notin N_r(q) \subset N_q \subset N$.
+
+Recall that $q$ is a limit point of $E$ ($q \in E'$), we see that $N_q$ contains a point $s \neq q$ such that $s \in E$.
+since $p \notin N_q$, we have $p \neq s$.
+Therefore, $N \supset N_q$ contains a point $s \neq p$ such that $s \in E$.
+Since $N$ was arbitrary, $p$ is a limit point of $E$ and $p \in E'$.
+
+Since the choice of $p$ was arbitrary, every limit point of $E'$ is a point of $E'$.
+Thus, $E'$ is closed.
+
+Next, let us prove that $E$ and $\overline{E}$ have the same limit points.
+Suppose $p$ is a limit point of $E$.
+Then every neighborhood of $p$ contains a point $q \neq p$ such that $q \in E \subset E \cup E' = \overline{E}$.
+Thus $p$ is a limit point of $\overline{E}$. 
+
+Conversely, suppose $p$ is a limit point of $\overline{E}$. 
+Then every neighborhood $N$ of $p$ contains a point $q \neq p$ such that $q \in \overline{E}$.
+Note that $q \in E$ or $q \in E'$. 
+
+If $q \in E$ then we are done. 
+Otherwise, suppose $q \in E'$. 
+Since $N$ is open, there is a neighborhood $N_q$ of $q$ such that $N_q \subset N$.
+Without loss of generality, assume $N_q$ does not contain $p$.
+Since $q$ is a limit point of $E$, $N_q$ contains a point $s \neq q$ such that $s \in E$.
+Hence, $N$ contains a point $s \neq p$ (since $p \notin N_q$) such that $s \in E$.
+Since $N$ was arbitrary, $p$ is a limit point of $E$.
+
+We conclude that $E$ and $\overline{E}$ has the same limit points.
+
+Finally, let $E=\left\{\frac{1}{n} \mid n \in \N\right\}$. It is clear that $E' = \{0\}$ but there is no limit point of $E'$. Hence it is possible that $E$ and $E'$ have different limit points.
+\end{proof}
