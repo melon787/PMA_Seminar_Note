@@ -256,3 +256,24 @@ Suppose $F \subset X$ is closed and $E \subset F$.
 Since $E' \subset F'$ and $F' \subset F$, we see that $E' \subset F$, and it follows that $\overline{E}=E \cup E' \subset F$.
 \end{enumerate}
 \end{proof}
+\begin{theorem}
+    Let $E$ be a nonempty set of real numbers which is bounded above. 
+    Let $y = \sup E$. 
+    Then $y \in \overline{E}$.
+    Hence $y \in E$ if $E$ is closed.
+\end{theorem}
+\begin{proof}
+    The result is immediate.
+\end{proof}
+\begin{remark}
+Suppose $E \subset Y \subset X$, where $X$ is a metric space. 
+We say that $E$ is \emph{open relative to $Y$} if to each $p \in E$ there is associated an $r>0$ such that $q \in E$ whenever $d(p,q)<r$ and $q \in Y$.
+\end{remark}
+
+\begin{theorem}
+Suppose $Y \subset X$.
+A subset $E$ of $Y$ is open relative to $Y$ if and only if $E= Y \cap G$ for some open subset $G$ of $X$.
+\end{theorem}
+\begin{proof}
+Since Rudin's proof is already explicit, we omit it here.
+\end{proof}
