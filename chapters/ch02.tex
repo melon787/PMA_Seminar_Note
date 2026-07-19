@@ -22,7 +22,7 @@ By the \emph{interval} $[a,b]$ we mean the set of all real numbers $x$ such that
 
 Occasionally we shall also encounter ``half-open intervals'' $[a,b)$ and $(a,b]$; the first consists of all $x$ such that $a \leq x < b$, the second of all $x$ such that $a < x \leq b$.
 
-If $a_i<b_i$ for $i=1, \ldots k$, the set of all points $\mathbf{x}=(x_1, \dots , x_k)$ in $\R^k$ whose coordinates satisfy the inequalities $a_i \leq x_i \leq b_i$ ($1 \leq i \leq k$) is called a \emph{k-cell}.
+If $a_i<b_i$ for $i=1, \ldots k$, the set of all points $\mathbf{x}=(x_1, \dots , x_k)$ in $\R^k$ whose coordinates satisfy the inequalities $a_i \leq x_i \leq b_i$ ($1 \leq i \leq k$) is called a \emph{$k$-cell}.
 Thus a 1-cell is an interval, a 2-cell is a rectangle, etc.
 
 If $\mathbf{x} \in \R^k$ and $r>0$, the \emph{open} (or \emph{closed}) \emph{ball $B$} with center at $\mathbf{x}$ and radius $r$ is defined to be the set of all $\mathbf{y} \in \R^k$ such that $|\mathbf{y}-\mathbf{x}|<r$ (or $|\mathbf{y}-\mathbf{x}| \leq r$).
@@ -34,7 +34,7 @@ We call a set $E \subset \R^k$ \emph{convex} if
 whenever $\mathbf{x} \in E$, $\mathbf{y} \in E$, and $0<\lambda<1$.
 \end{definition}
 \begin{example}
-Balls and k-cells are convex.
+Balls and $k$-cells are convex.
 \end{example}
 \begin{proof}
 If $|\mathbf{y}-\mathbf{x}|<r$, $|\mathbf{z}-\mathbf{x}|<r$, and $0<\lambda<1$, then
@@ -47,7 +47,7 @@ If $|\mathbf{y}-\mathbf{x}|<r$, $|\mathbf{z}-\mathbf{x}|<r$, and $0<\lambda<1$, 
 Hence, open balls are convex. 
 The same proof applies to closed balls.
 
-Let $A \subset \R^k$ be a k-cell and let $\mathbf{x},\mathbf{y} \in A$ and $0<\lambda<1$. 
+Let $A \subset \R^k$ be a $k$-cell and let $\mathbf{x},\mathbf{y} \in A$ and $0<\lambda<1$. 
 We write $\mathbf{x}=(x_1, \ldots x_k)$, $\mathbf{y}=(y_1, \ldots, y_k)$ with
 \[
 a_i<b_i \text{ and } x_i, y_i \in [a_i,b_i] \text{ for } i=1, \ldots, k.
@@ -66,7 +66,7 @@ a \leq {\lambda}x+(1-\lambda)y \leq b.
 \]
 It follows that each $[a_i, b_i]$ ($1 \leq i \leq k$) is convex.
 
-Therefore, every k-cell is convex.
+Therefore, every $k$-cell is convex.
 \end{proof}
 \begin{definition}
     Let $X$ be a metric space. All points and sets mentioned below are understood to be elements and subsets of $X$.
@@ -274,9 +274,6 @@ We say that $E$ is \emph{open relative to $Y$} if to each $p \in E$ there is ass
 Suppose $Y \subset X$.
 A subset $E$ of $Y$ is open relative to $Y$ if and only if $E= Y \cap G$ for some open subset $G$ of $X$.
 \end{theorem}
-\begin{proof}
-Since Rudin's proof is already explicit, we omit it here.
-\end{proof}
 
 \subsection{Compact Sets}
 \begin{definition}
@@ -338,9 +335,7 @@ Hence $V \subset K^c$, so that $p$ is an interior point of $K^c$. The theorem fo
 \begin{theorem}\label{thm:closed_implies_compact}
 Closed subsets of compact sets are compact.
 \end{theorem}
-\begin{proof}
-Since Rudin's proof is already explicit, we omit it here.
-\end{proof}
+
 \begin{corollary}
     If $F$ is closed and $K$ is compact, then $F \cap K$ is compact.
 \end{corollary}
@@ -351,7 +346,6 @@ Since Rudin's proof is already explicit, we omit it here.
 \begin{theorem}
 If $\{K_{\alpha}\}$ is a collection of compact subsets of a metric space $X$ such that the intersection of every finite subcollection of $\{K_{\alpha}\}$ is nonempty, then $\bigcap K_{\alpha}$ is nonempty.
 \end{theorem}
-
 \begin{proof}
 Fix a menber $K_1$ of $\{K_{\alpha}\}$ and put $G_{\alpha}=K_{\alpha}^c$. 
 Assume that no point of $K_1$ belongs to every $K_{\alpha}$.
@@ -366,8 +360,26 @@ K_1 \cap K_{\alpha_1} \cap \cdots \cap K_{\alpha_n}
 is empty, in contradiction to our hypothesis.
 \end{proof}
 \begin{corollary}
-If $\{K_n\}$ is a sequence of nonempty compact sets such that $K_n \supset K_{n+1}$ ($n=1, 2, 3, \ldots$), then $\bigcap_{1}^{\infty}K_n$ is not empty.
+If $\{K_n\}$ is a sequence of nonempty compact sets such that $K_n \supset K_{n+1}$($n=1, 2, 3, \ldots$), then $\bigcap_{1}^{\infty}K_n$ is not empty.
 \end{corollary}
+
+\begin{theorem}
+If $E$ is an infinite subset of a compact set $K$, then $E$ has a limit point in $K$.
+\end{theorem}
+
+
+\begin{theorem}
+If $\{I_n\}$ is a sequence of intervals in $\R^1$, such that $I_n \supset I_{n+1}$($n=1,2,3,\ldots$), then $\bigcap_{1}^{\infty}I_n$ is not empty.
+\end{theorem}
+
+\begin{theorem}
+Let $k$ be a positive integer. 
+If $\{I_n\}$ is a sequence of $k$-cells such that $I_n \supset I_{n+1}$($n=1,2,3,\ldots$), then $\bigcap_{1}^{\infty}I_n$ is not empty.
+\end{theorem}
+
+\begin{theorem}
+Every $k$-cell is compact.
+\end{theorem}
 
 \subsection*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
@@ -414,4 +426,30 @@ Since $N$ was arbitrary, $p$ is a limit point of $E$.
 We conclude that $E$ and $\overline{E}$ has the same limit points.
 
 Finally, let $E=\left\{\frac{1}{n} \mid n \in \N\right\}$. It is clear that $E' = \{0\}$ but there is no limit point of $E'$. Hence it is possible that $E$ and $E'$ have different limit points.
+\end{proof}
+
+\begin{exercise}
+Let $K \subset \R^1$ consist of $0$ and the numbers $1/n$, for $n=1,2,3,\ldots$. 
+Prove that $K$ is compact directly from the definition (without using the Heine-Borel theorem).
+\end{exercise}
+\begin{proof}
+Let $\{G_{\alpha}\}$ be an open cover of $K$.
+Since $0 \in K$, there exists an $\alpha_0$ such that $0 \in G_{\alpha_0}$.
+Since every $G_\alpha$ is open, choose a neighborhood $N$ of $0$ with radius $r$ such that $N \subset G_{\alpha_0}$.
+
+If $r>1$ then $K \subset G_{\alpha_0}$ hence we are done. 
+
+If $0 < r \leq 1$ then the set 
+\begin{equation}
+E=\left\{1/n \mid n \in \N, r \leq 1/n \right\}
+\end{equation}
+is finite by the Archimedean Property.
+Let $x_1, \ldots, x_k$ be the points of $E$.
+Since $x_i \in K \subset \bigcup_{\alpha} G_{\alpha}$ ($1 \leq i \leq k$), there exists $\alpha_i$ such that $x_i \in G_{\alpha_i}$ for $i=1, \ldots, k$.
+Thus, we have finitely many indices $\alpha_0, \alpha_1, \ldots, \alpha_k$ such that
+\[
+K \subset G_{\alpha_0} \cup G_{\alpha_1} \cup \cdots \cup G_{\alpha_k}.
+\]
+
+We conclude that $K$ is compact.
 \end{proof}

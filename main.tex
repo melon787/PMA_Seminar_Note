@@ -4,10 +4,43 @@
 
 \begin{document}
 
+% Front matter
+\pagenumbering{roman}
+
 \maketitle
+\thispagestyle{empty}
+
+\clearpage
+
+\vspace{1em}
+
+\section*{About These Notes}
+\addcontentsline{toc}{section}{About These Notes}
+
+These notes are intended to accompany the reading of Walter Rudin's
+\emph{Principles of Mathematical Analysis}, rather than to serve as a
+self-contained replacement for the original text.
+
+The statements of definitions, theorems, and exercises are generally
+reproduced from Rudin. Proofs and solutions are expanded, reorganized,
+or supplemented when additional detail seems useful. When Rudin's proof
+requires no further elaboration, it is omitted and only the statement is
+recorded.
+
+Remarks, examples, and auxiliary results not appearing in the original
+text are occasionally added for clarification or later reference.
+Such additions are indicated when appropriate.
+
+\clearpage
 
 \tableofcontents
 
+\clearpage
+
+% Main text
+\pagenumbering{arabic}
+
 \input{chapters/ch01.tex}
 \input{chapters/ch02.tex}
+
 \end{document}
