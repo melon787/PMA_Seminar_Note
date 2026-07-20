@@ -103,7 +103,7 @@ Thus there is a neighborhood of $q$ that is a subset of $E$.
 Therefore, every $q \in E$ is an interior point of $E$.
 We conclude that $E$ is an open set.
 \end{proof}
-\begin{theorem}
+\begin{theorem}\label{thm:limit_cluster}
     If $p$ is a limit point of a set $E$, then every neighborhood of $p$ contains infinitely many points of $E$.
 \end{theorem}
 
@@ -363,7 +363,7 @@ is empty, in contradiction to our hypothesis.
 If $\{K_n\}$ is a sequence of nonempty compact sets such that $K_n \supset K_{n+1}$($n=1, 2, 3, \ldots$), then $\bigcap_{1}^{\infty}K_n$ is not empty.
 \end{corollary}
 
-\begin{theorem}
+\begin{theorem}\label{thm:compact_limit}
 If $E$ is an infinite subset of a compact set $K$, then $E$ has a limit point in $K$.
 \end{theorem}
 
@@ -377,10 +377,50 @@ Let $k$ be a positive integer.
 If $\{I_n\}$ is a sequence of $k$-cells such that $I_n \supset I_{n+1}$($n=1,2,3,\ldots$), then $\bigcap_{1}^{\infty}I_n$ is not empty.
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}\label{thm:k-cell_compact}
 Every $k$-cell is compact.
 \end{theorem}
 
+\begin{theorem}
+If a set $E$ in $\R^k$ has one of the following three properties, then it has the other two:
+\begin{enumerate}
+    \item[(a)] $E$ is closed and bounded.
+    \item[(b)] $E$ is compact.
+    \item[(c)] Every infinite subset of $E$ has a limit point in $E$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+If (a) holds, then $E \subset I$ for some $k$-cell $I$, and (b) follows from Theorems \ref{thm:k-cell_compact} and \ref{thm:closed_implies_compact}.
+Theorem \ref{thm:compact_limit} shows that (b) implies (c).
+It remains to be shown that (c) implies (a).
+
+If $E$ is not bounded, then $E$ contains points $\mathbf{x}_n$ with
+\[
+|\mathbf{x}_n|>n \qquad (n=1,2,3,\ldots).
+\]
+The set $S$ consisting of these points $\mathbf{x}_n$ is infinite and has no limit point in $\R^k$, hence none in $E$.
+For if $p \in \R^k$ were a limit point of $S$, then there would exist a positive integer $n$ such that $|p|<n$ by the Archimedean Property.
+Put $r=n-|p|$. 
+Then the neighborhood $N_r(p)$ of $p$ contains at most $n-1$ points of $S$, which contradicts Theorem \ref{thm:limit_cluster}.
+Thus (c) implies that $E$ is bounded.
+
+If $E$ is not closed, then there is a point $\mathbf{x}_0 \in \R^k$ which is a limit point of $E$ but not a point of $E$.
+For $n=1,2,3,\ldots$, there are points $\mathbf{x}_n \in E$ such that $|\mathbf{x}_n-\mathbf{x}_0|<1/n$.
+Let $S$ be the set of these points $\mathbf{x}_n$.
+Then $S$ is infinite (otherwise $|\mathbf{x}_n-\mathbf{x}_0|$ would have a constant positive value, for infinitely many $n$), $S$ has $\mathbf{x}_0$ as a limit point, and $S$ has no other limit point in $\R^k$.
+For if $\mathbf{y} \in \R^k$, $\mathbf{y} \neq \mathbf{x}_0$, then
+\begin{align*}
+    |\mathbf{x}_n-\mathbf{y}| &\geq |\mathbf{x}_0-\mathbf{y}| - |\mathbf{x}_n-\mathbf{x}_0| \\
+    &\geq |\mathbf{x}_0-\mathbf{y}| - \frac{1}{n} \geq \frac{1}{2} |\mathbf{x}_0 - \mathbf{y}|
+\end{align*}
+for all but finitely many $n$; this shows that $\mathbf{y}$ is not a limit point of $S$ (Theorem \ref{thm:limit_cluster}).
+
+Thus $S$ has no limit point in $E$; hence $E$ must be closed if (c) holds.
+\end{proof}
+
+\begin{theorem}[Weierstrass]
+Every bounded infinite subset of $\R^k$ has a limit point in $\R^k$.
+\end{theorem}
 \subsection*{Exercises}
 \addcontentsline{toc}{section}{Exercises}
 
