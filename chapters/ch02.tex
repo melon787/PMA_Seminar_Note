@@ -526,6 +526,24 @@ Observe that $0$ is not a limit point of $A_n$ and $0 \notin A_n$ for $n=1,2,3, 
 It follows that $0 \notin \bigcup_{i=1}^{\infty}\overline{A_i}$. But it is clear that $0 \in \overline{B}$.
 \end{proof}
 \begin{exercise}
+Is every point of every open set $E \subset \R^2$ a limit point of $E$?
+Answer the same question for closed sets in $\R^2$.
+\end{exercise}
+\begin{proof}
+Suppose $p \in E$ is not a limit point of $E$.
+Then there exists a neighborhood $N'$ of $p$ such that $N' \cap E = \{p\}$.
+Since $E$ is open, choose a neighborhood $N''$ of $p$ such that $N'' \subset E$.
+Then we have 
+\[
+N= (N'' \cap N') \subset (E \cap N') = \{p\}.
+\]
+Since $p \in N$, it follows that $N=\{p\}$. Since $N$ is an intersection of two neighborhoods of the same point $p$ in $\R^2$, $N$ is a neighborhood of $p$.
+But in $\R^2$, every neighborhood is infinite.
+This is a contradiction.
+
+Next, let $F=\{\mathbf{x}\} \subset \R^2$. It is clear that $F$ is a closed subset of $\R^2$ but $\mathbf{x} \in F$ is not a limit point of $F$.
+\end{proof}
+\begin{exercise}
 Let $K \subset \R^1$ consist of $0$ and the numbers $1/n$, for $n=1,2,3,\ldots$. 
 Prove that $K$ is compact directly from the definition (without using the Heine-Borel theorem).
 \end{exercise}
@@ -551,3 +569,15 @@ K \subset G_{\alpha_0} \cup G_{\alpha_1} \cup \cdots \cup G_{\alpha_k}.
 We conclude that $K$ is compact.
 \end{proof}
 
+\begin{exercise}
+Give an example of an open cover of the segment $(0,1)$ which has no finite subcover.
+\end{exercise}
+\begin{proof}
+For each $n \in \N$, let
+\[
+G_n=\left\{x \in \R \mid 0<x<1-\frac{1}{n}\right\}.
+\]
+If $0<x<1$, then there exists a positive integer $n$ such that $1<n(1-x)$, hence $0<x<1-\frac{1}{n}$ so that $x \in G_n$.
+It follows that the collection $\{G_n\}_{n \in \N}$ is an open cover of $(0,1)$.
+But it is clear that any finite subcollection of $\{G_n\}_{n \in \N}$ cannot cover $(0,1)$.
+\end{proof}
