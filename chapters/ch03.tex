@@ -1,0 +1,73 @@
+\clearpage
+
+\section{Numerical Sequences and Series}
+\subsection{Convergent Sequences}
+
+\begin{definition}
+A sequence $\{p_n\}$ in a metric space $X$ is said to \emph{converge} if there is a point $p \in X$ with the following property: 
+For every $\varepsilon>0$ there is an integer $N$ such that $n \geq N$ implies that $d(p_n,p)<\varepsilon$. 
+(Here $d$ denotes the distance in $X$.)
+
+In this case we also say that $\{p_n\}$ converges to $p$, or that $p$ is the limit of $\{p_n\}$ [see Theorem \ref{thm:limit_property}(b)], and we write $\{p_n\} \to p$, or
+\[
+\lim_{n \to \infty} p_n = p.
+\]
+
+If $\{p_n\}$ does not converge, it is said to \emph{diverge}.
+
+We recall that the set of all points $p_n$ ($n=1, 2, 3, \ldots$) is  the \emph{range} of $\{p_n\}$.
+The range of a sequence may be a finite set, or it may be infinite.
+The sequence $\{p_n\}$ is said to be \emph{bounded} if its range is bounded.
+\end{definition}
+
+\begin{theorem} \label{thm:limit_property}
+Let $\{p_n\}$ be a sequence in a metric space $X$.
+
+\begin{enumerate}
+    \item[(a)] $\{p_n\}$ converges to $p \in X$ if and only if every neighborhood of $p$ contains $p_n$ for all but finitely many $n$.
+    \item[(b)] If $p \in X$, $p' \in X$, and if $\{p_n\}$ converges to $p$ and to $p'$, then $p'=p$.
+    \item[(c)] If $\{p_n\}$ converges, then $\{p_n\}$ is bounded.
+    \item[(d)] If $E \subset X$ and if $p$ is a limit point of $E$, then there is a sequence $\{p_n\}$ in $E$ such that $p=\lim\limits_{n \to \infty} p_n$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Since Rudin's proofs of parts (a), (b), and (c) are already explicit, we omit them here.
+
+We prove part (d). 
+Since $p$ is a limit point of $E$, for $n=1, 2, 3, \ldots$, choose a point $p_n \in E$ such that $d(p_n,p)<1/n$.
+Given $\varepsilon>0$, there exists a positive integer $N$ such that $N\varepsilon>1$.
+Then $n \geq N$ implies 
+\[
+d(p_n,p)<\frac{1}{n}\leq\frac{1}{N}<\varepsilon.
+\]
+Therefore, $\{p_n\}$ converges to $p$.
+\end{proof}
+
+\begin{theorem}
+Suppose $\{s_n\}$, $\{t_n\}$ are complex sequences, and $\lim_{n \to \infty} s_n =s$, $\lim_{n \to \infty} t_n =t$.
+Then
+\begin{enumerate}
+    \item[(a)] $\lim\limits_{n \to \infty} (s_n + t_n) = s+t$;
+    \item[(b)] $\lim\limits_{n \to \infty} cs_n=cs$, $\lim\limits_{n \to \infty}(c+s_n)=c+s$, for any number $c$;
+    \item[(c)] $\lim\limits_{n \to \infty} s_nt_n=st$;
+    \item[(d)] $\lim\limits_{n \to \infty} \displaystyle\frac{1}{s_n}=\frac{1}{s}$, provided $s_n \neq 0$ ($n=1, 2, 3, \ldots$), and $s \neq 0$.
+\end{enumerate} 
+\end{theorem}
+
+\begin{theorem}
+\begin{enumerate}
+    \item[(a)] Suppose $\mathbf{x}_n \in \R^k$ ($n=1, 2, 3, \ldots$) and \[\mathbf{x}_n=(\alpha_{1,n}, \ldots, \alpha_{k,n}).\] 
+    Then $\{\mathbf{x}_n\}$ converges to $\mathbf{x}=(\alpha_1, \ldots, \alpha_k)$ if and only if
+    \begin{equation}
+        \lim_{n \to \infty} \alpha_{j,n} = \alpha_j \qquad (1 \leq j \leq k).
+    \end{equation}
+    \item[(b)] Suppose $\{\mathbf{x}_n\}$, $\{\mathbf{y}_n\}$ are sequences in $\R^k$, $\{\beta_n\}$ is a sequence of real numbers, and $\mathbf{x}_n \to \mathbf{x}$, $\mathbf{y}_n \to \mathbf{y}$, $\beta_n \to \beta$.
+    Then
+    \[
+    \lim_{n \to \infty} (\mathbf{x}_n + \mathbf{y}_n) = \mathbf{x} + \mathbf{y}, \qquad \lim_{n \to \infty} \mathbf{x}_n \cdot \mathbf{y}_n = \mathbf{x} \cdot \mathbf{y}, \qquad \lim_{n \to \infty} \beta_n \mathbf{x}_n = \beta \mathbf{x}.
+    \]
+\end{enumerate}
+\end{theorem}
+
+\subsection{Subsequences}
