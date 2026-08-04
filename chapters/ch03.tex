@@ -118,3 +118,78 @@ Then $\{p_{n_i}\}$ converges to $p$.
 \begin{theorem}
 The subsequential limits of a sequence $\{p_n\}$ in a metric space $X$ form a closed subset of $X$.
 \end{theorem}
+
+\subsection{Cauchy Sequences}
+
+\begin{definition}
+A sequence $\{p_n\}$ in a metric space $X$ is said to be a \emph{Cauchy sequence} if for every $\varepsilon>0$ there is an integer $N$ such that $d(p_n,p_m)<\varepsilon$ if $n \geq N$ and $m \geq N$.
+\end{definition}
+
+\begin{definition}
+Let $E$ be a nonempty subset of a metric space $X$, and let $S$ be the set of all real numbers of the form $d(p,q)$, with $p \in E$ and $q \in E$.
+The sup of $S$ is called the \emph{diameter} of $E$.
+\end{definition}
+
+Let $\{p_n\}$ be a sequence in $X$ and let $E_N$ consist of the points $p_N, p_{N+1}, p_{N+2}, \ldots$. 
+We prove that \emph{$\{p_n\}$ is a Cauchy sequence if and only if}
+\[
+\lim_{N \to \infty} \diam E_N = 0.
+\]
+
+Suppose $\{p_n\}$ is Cauchy.
+Given $\varepsilon>0$, choose an integer $N_0$ such that $n,m \geq N_0$ imply $d(p_n,p_m)<\varepsilon$.
+It follows that $\diam E_{N_0} \leq \varepsilon$.
+Since $E_{N_0} \supset E_{N_0+1} \supset E_{N_0+2} \supset \cdots$, we have $\diam E_{N_0} \geq \diam E_{N_0+1} \geq \diam E_{N_0+2} \geq \cdots$.
+Therefore, $N \geq N_0$ implies $\diam E_N \leq \varepsilon$. 
+This proves that $\lim_{N \to \infty} \diam E_N = 0$.
+
+Conversely, suppose $\lim_{N \to \infty} \diam E_N = 0$.
+For every $\varepsilon>0$, there exists an integer $N_1$ such that $\diam E_{N_1} <\varepsilon$.
+Thus, if $n \geq N_1$ and $m \geq N_1$ then $d(p_n,p_m) \leq \diam E_{N_1} < \varepsilon$. 
+Hence $\{p_n\}$ is a Cauchy sequence.
+\begin{theorem}\,
+\begin{enumerate}
+\item [(a)] If $\overline{E}$ is the closure of a set $E$ in a metric space $X$, then
+\[
+\diam \overline{E} = \diam E.
+\]
+\item[(b)] If $K_n$ is a sequence of compact sets in $X$ such that $K_n \supset K_{n+1}$ ($n=1,2,3,\ldots$) and if
+\[
+\lim_{n \to \infty} \diam K_n = 0,
+\]
+then $\cap_{1}^{\infty}K_n$ consists of exactly one point.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}\label{thm:compact_completeness} \,
+\begin{enumerate}
+\item[(a)] In any metric space $X$, every convergent sequence is a Cauchy sequence.
+\item[(b)] If $X$ is a compact metric space and if $\{p_n\}$ is a Cauchy sequence in $X$, then $\{p_n\}$ converges to some point of $X$.
+\item[(c)] In $\R^k$, every Cauchy sequence converges.
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+A metric space in which every Cauchy sequence converges is said to be \emph{complete}.
+\end{definition}
+
+Thus Theorem \ref{thm:compact_completeness} says that \emph{all compact metric spaces and all Euclidean spaces are complete}.
+Theorem \ref{thm:compact_completeness} implies also that \emph{every closed subset $E$ of a complete metric space $X$ is complete}. \footnote{This result is also immediate from definition.}
+
+Theorem \ref{thm:limit_property}(c) shows that convergent sequences are bounded.
+But bounded sequences need not converge.
+However, there is one important case in which covnergence \emph{is} equivalent to boundness.
+
+\begin{definition}
+A sequence $\{s_n\}$ of real numbers is said to be
+
+\begin{enumerate}
+    \item[(a)] \emph{monotonically increasing} if $s_n \leq s_{n+1}$ ($n=1, 2, 3, \ldots$);
+    \item[(b)] \emph{monotonically decreasing} if $s_n \geq s_{n+1}$ ($n=1, 2, 3, \ldots$). 
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+Suppose $\{s_n\}$ is monotonic.
+Then $\{s_n\}$ converges if and only if it is bounded.
+\end{theorem}
