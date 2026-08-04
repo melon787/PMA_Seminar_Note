@@ -55,7 +55,7 @@ Then
 \end{enumerate} 
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem} \,
 \begin{enumerate}
     \item[(a)] Suppose $\mathbf{x}_n \in \R^k$ ($n=1, 2, 3, \ldots$) and \[\mathbf{x}_n=(\alpha_{1,n}, \ldots, \alpha_{k,n}).\] 
     Then $\{\mathbf{x}_n\}$ converges to $\mathbf{x}=(\alpha_1, \ldots, \alpha_k)$ if and only if
@@ -71,3 +71,50 @@ Then
 \end{theorem}
 
 \subsection{Subsequences}
+
+\begin{definition}
+Given a sequence $\{p_n\}$, consider a sequence $\{n_k\}$ of positive integers, such that $n_1 < n_2 < n_3 < \cdots$.
+Then the sequence $\{p_{n_i}\}$ is called a \emph{subsequence} of $\{p_n\}$.
+If $\{p_{n_i}\}$ converges, its limit is called a \emph{subsequential limit} of $\{p_n\}$.
+\end{definition}
+
+
+A sequence $\{p_n\}$ converges to $p$ if and only if every subsequence of $\{p_n\}$ converges to $p$.
+
+To prove that, suppose $\{p_n\}$ converges to $p$ and let $\{p_{n_i}\}$ be a subsequence of $\{p_n\}$. 
+Given $\varepsilon>0$, there exists a positive integer $N$ such that $d(p_n,p)<\varepsilon$ for $n \geq N$.
+Since $n_i \geq i$ for $i=1, 2, 3, \ldots$, $i \geq N$ implies $n_i \geq N$ and therefore $d(p_{n_i},p)<\varepsilon$.
+Hence $\{p_{n_i}\}$ converges to $p$.
+
+The converse is trivial.
+
+\begin{theorem} \,
+    \begin{enumerate}
+        \item[(a)] If $\{p_n\}$ is a sequence in a compact metric space $X$, then some subsequence of $\{p_n\}$ converges to a point of $X$.
+        \item[(b)] Every bounded sequence in $\R^k$ contains a convergent subsequence.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\,
+\begin{enumerate}
+\item[(a)] Let $E$ be a range of $\{p_n\}$.
+If $E$ is finite then there are infinitely many terms such that
+    \[
+    p_{n_1}=p_{n_2}=p_{n_3}=\cdots=p.
+    \]
+Without loss of generality, we may assume that $n_1<n_2<n_3< \cdots$.
+It is clear that $\{p_{n_i}\}$ converges to $p$.
+
+If $E$ is infinite, Theorem \ref{thm:compact_limit} shows that $E$ has a limit point $p \in X$.
+Choose $n_1$ so that $d(p,p_{n_1})<1$.
+Having chosen $n_1, \ldots, n_{i-1}$, we see from Theorem \ref{thm:limit_cluster} that there is an integer $n_i>n_{i-1}$ such that $d(p,p_{n_i})<1/i$.
+Then $\{p_{n_i}\}$ converges to $p$.
+
+\item[(b)] This follows from (a) and the Heine--Borel Theorem.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+The subsequential limits of a sequence $\{p_n\}$ in a metric space $X$ form a closed subset of $X$.
+\end{theorem}
