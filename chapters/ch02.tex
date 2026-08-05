@@ -651,13 +651,13 @@ But it is clear that any finite subcollection of $\{G_n\}_{n \in \N}$ cannot cov
 
 \begin{proof}\,
 \begin{enumerate} 
-\item[(a)] Suppose $A$ and $B$ are disjoint closed subsets of metric space $X$. 
+\item[(a)] Suppose $A$ and $B$ are disjoint closed subsets of a metric space $X$. 
 Since $A = \overline{A}$ and $B= \overline{B}$ by the Theorem \ref{thm:property_closed}, we have $\overline{A} \cap B=A \cap \overline{B}=A \cap B = \varnothing$.
 This proves (a).
 \item[(b)] Let $A$ and $B$ be disjoint open subsets of $X$.
 Since $A \cap B = \varnothing$, we have $A \subset B^c$. 
 Since $B^c$ is closed (notice $B$ is open), the Theorem \ref{thm:property_closed} implies that $\overline{A} \subset B^c$, hence $\overline{A} \cap B = \varnothing$.
-By symmetry, a same argument proves that $A \cap \overline{B} = \varnothing$.
+By symmetry, the same argument proves that $A \cap \overline{B} = \varnothing$.
 Therefore, $A$ and $B$ are separated.
 \item[(c)] Fix $p \in X$ and $\delta>0$.
 Then by the definition of $A$, it is a neighborhood in $X$, hence it is open.
@@ -673,10 +673,8 @@ hence $x \in B$.
 It follows that $N_r(q) \subset B$ and therefore $B$ is open.
 
 Since $A$ and $B$ are disjoint open sets in $X$, (b) shows that they are separated.
-\item[(d)] Let $X$ be a connected a connected metric space.
-Suppose $p$ and $q$ are two distinct points in $X$.
-
-Put $r=d(p,q)>0$.
+\item[(d)] Let $X$ be a connected metric space.
+Suppose $p$ and $q$ are two distinct points in $X$ and put $r=d(p,q)>0$.
 For every $\delta \in (0,r)$, define 
 \begin{align*}
 A_{\delta}=\left\{x \in X \mid d(p,x)<\delta\right\}, \qquad B_{\delta}=\left\{x \in X \mid d(p,x)>\delta\right\}.
@@ -685,8 +683,8 @@ It follows from (c) that $A_{\delta}$ and $B_{\delta}$ are separated if $0<\delt
 Thus it is impossible that $X=A_{\delta} \cup B_{\delta}$ and hence there exists a point $x_{\delta} \in X$ such that $d(p,x_{\delta})=\delta$ for each $\delta \in (0,r)$.
 
 Let $f(\delta)=x_{\delta}$ for $0<\delta<r$.
-If $\delta_1 \neq \delta_2$ then $f(\delta_1) \neq f(\delta_2)$, hence $f:(0,r) \longrightarrow X$ 1-1 function from $(0,r)$ to $X$.
-Since $(0,r)$ is uncountable subset of $\R$, we conclude that $X$ is uncountable.
+If $\delta_1 \neq \delta_2$ then $f(\delta_1) \neq f(\delta_2)$, hence $f:(0,r) \longrightarrow X$ is a 1-1 function from $(0,r)$ to $X$.
+Since $(0,r)$ is an uncountable subset of $\R$, we conclude that $X$ is uncountable.
 \end{enumerate}
 \end{proof}
 
