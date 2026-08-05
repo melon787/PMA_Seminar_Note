@@ -72,7 +72,7 @@ Then
 
 \subsection{Subsequences}
 
-\begin{definition}
+\begin{definition} \label{def:subsequence}
 Given a sequence $\{p_n\}$, consider a sequence $\{n_k\}$ of positive integers, such that $n_1 < n_2 < n_3 < \cdots$.
 Then the sequence $\{p_{n_i}\}$ is called a \emph{subsequence} of $\{p_n\}$.
 If $\{p_{n_i}\}$ converges, its limit is called a \emph{subsequential limit} of $\{p_n\}$.
@@ -115,7 +115,7 @@ Then $\{p_{n_i}\}$ converges to $p$.
 \end{enumerate}
 \end{proof}
 
-\begin{theorem}
+\begin{theorem} \label{thm:subseq_closed}
 The subsequential limits of a sequence $\{p_n\}$ in a metric space $X$ form a closed subset of $X$.
 \end{theorem}
 
@@ -192,4 +192,101 @@ A sequence $\{s_n\}$ of real numbers is said to be
 \begin{theorem}
 Suppose $\{s_n\}$ is monotonic.
 Then $\{s_n\}$ converges if and only if it is bounded.
+\end{theorem}
+
+\subsection{Upper and Lower Limits}
+\begin{definition} 
+Let $\{s_n\}$ be a sequence of real numbers with the following property:
+For every real $M$ there is an integer $N$ such that $n \geq N$ implies $s_n \geq M$.
+We then write
+\[
+s_n \to +\infty.
+\]
+Similarly, if for every real $M$ there is an integer $N$ such that $n \geq N$ implies $s_n \leq M$, we write
+\[
+s_n \to -\infty.
+\]
+\end{definition}
+
+\begin{definition}\label{def:upper_lower_limits}
+Let $\{s_n\}$ be a sequence of real numbers.
+Let $E$ be the set of numbers $x$ (in the extended real number system) such that $s_{n_k} \to x$ for some subsequence $\{s_{n_k}\}$.
+This set $E$ contains all subsequential limits as defined in Definition \ref{def:subsequence}, plus possibly the numbers $+ \infty$, $- \infty$.
+
+We now recall Definitions \ref{def:sup_inf} and \ref{def:infinity} and put
+\begin{align*}
+    s^{*} = \sup E,\\
+    s_{*} = \inf E.
+\end{align*}
+The numbers $s^*$, $s_*$ are called the \emph{upper} and \emph{lower limits} of $\{s_n\}$;
+we use the notation
+\[
+\limsup_{n \to \infty}s_n = s^*, \qquad \liminf_{n \to \infty}s_n=s_*.
+\]
+\end{definition}
+
+\begin{theorem}
+Let $\{s_n\}$ be a sequence of real numbers.
+Let $E$ and $s^*$ have the same meaning as in Definition \ref{def:upper_lower_limits}.
+Then $s^*$ has the following two properties:
+\begin{enumerate}
+    \item[(a)] $s^* \in E$.
+    \item[(b)] If $x>s^*$, there is an integer $N$ such that $n \geq N$ implies $s_n<x$.
+\end{enumerate}
+
+Moreover, $s^*$ is the only number with the properties (a) and (b).
+\end{theorem}
+
+Of course, an analogous result is true for $s_*$.
+
+\begin{proof}
+Since Rudin's proofs of part (b) and the uniqueness of $s^*$ are already explicit, we omit them here.
+We prove part (a).
+
+If $s^*=+\infty$ then by the definition of supremum, no real number is an upper bound of $E$.
+Hence $E$ is not bounded above in $\R$.
+It follows that $\{s_n\}$ is not bounded above, for otherwise $\sup E$ would exist in $\R \cup \{-\infty\}$.
+Pick an integer $n_1$ such that $s_{n_1}>1$.
+Having chosen $n_1, \ldots, n_{k-1}$, there exists an $n_k>n_{k-1}$ such that $s_{n_k}>k$.
+Thus, the last inequality holds for $k=1,2,3, \ldots$ and this implies that $s_{n_k} \to +\infty$.
+
+If $s^*$ is real, this means that $\sup E$ exists in $\R$.
+Removing $-\infty$ from $E$ if necessary\footnote{This does not change the supremum of $E$. See Remark \ref{removing_minus_infinity}.}, we may assume that $E$ is a subset of $\R$.
+Then $s^*= \sup E \in \overline{E}$.
+Hence (a) follows from Theorem \ref{thm:subseq_closed}.
+
+If $s^*=-\infty$, then $s^*=\sup E<x$ for every real number $x$. 
+Hence there is no subsequential limit of $\{s_n\}$ (in $\R$) and $E$ contains at most one element, namely $- \infty$.
+If $\{s_n\}$ were bounded, then there would be a convergent subsequence $\{s_{n_k}\}$.
+This says that $\{s_n\}$ is not bounded.
+Since there is no subsequence of $\{s_n\}$ which diverges to $+\infty$, $\{s_n\}$ is bounded above.
+Hence $\{s_n\}$ is not bounded below and it follows that $s^*=-\infty \in E$.
+
+This establishes (a) in all cases.
+\end{proof}
+
+\begin{remark} \label{removing_minus_infinity}
+Let $S$ be an ordered set and $E$ be a subset of $S$. 
+Suppose
+\[
+E=\{a\} \cup \widetilde{E}
+\]
+where $a$ is not an upper bound of $\widetilde{E}$. 
+If the suprema of $E$ and $\widetilde{E}$ exist in $S$, then $\sup \widetilde{E} = \sup E$.
+\end{remark}
+
+\begin{proof}
+Since $\widetilde{E} \subset E$, we have $\sup \widetilde{E} \leq \sup E$.
+Suppose $ \sup \widetilde{E} < \sup E$.
+Then there exists an $x \in E$ such that $\sup \widetilde{E} < x$.
+Hence, $x \notin \widetilde{E}$, that is, $x=a$.
+But $a$ is not an upper bound of $\widetilde{E}$ by hypothesis, a contradiction.
+\end{proof}
+
+\begin{theorem}
+If $s_n \leq t_n$ for $n \geq N$, where $N$ is fixed, then
+\begin{align*}
+    \liminf_{n \to \infty}s_n \leq \liminf_{n \to \infty}t_n, \\
+    \limsup_{n \to \infty}s_n \leq \limsup_{n \to \infty} t_n.
+\end{align*}
 \end{theorem}
