@@ -290,3 +290,21 @@ If $s_n \leq t_n$ for $n \geq N$, where $N$ is fixed, then
     \limsup_{n \to \infty}s_n \leq \limsup_{n \to \infty} t_n.
 \end{align*}
 \end{theorem}
+
+\subsection*{Exercises}
+
+\begin{exercise}
+suppose $\{p_n\}$ is a Cauchy sequence in a metric space $X$, and some subsequence $\{p_{n_i}\}$ converges to a point $p \in X$.
+Prove that the full sequence $\{p_n\}$ converges to $p$.
+\end{exercise}
+\begin{proof}
+Fix $\varepsilon>0$.
+Since $\{p_n\}$ is Cauchy, there exists an integer $N$ such that $d(p_n,p_m)<\varepsilon/2$ if $n \geq N$ and $m \geq N$.
+Since a subsequence $\{p_{n_i}\}$ converges to $p$ and by Theorem \ref{thm:limit_property}(a), choose an integer $k \geq N$ such that $d(p_{n_k},p)<\varepsilon/2$.
+Hence, $n \geq N$ implies
+\begin{align*}
+d(p_n,p) &\leq d(p_n, p_{n_k})+d(p_{n_k}, p) \\
+&<\varepsilon/2+\varepsilon/2=\varepsilon.
+\end{align*}
+This is the desired result.
+\end{proof}
