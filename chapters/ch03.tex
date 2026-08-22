@@ -295,6 +295,103 @@ If $s_n \leq t_n$ for $n \geq N$, where $N$ is fixed, then
 \addcontentsline{toc}{subsection}{Exercises}
 
 \begin{exercise}
+Suppose $a_n>0$, $s_n=a_1+\cdots+a_n$, and $\sum a_n$ diverges.
+\begin{enumerate}
+    \item[(a)] Prove that $\sum\frac{a_n}{1+a_n}$ diverges.
+    \item[(b)] Prove that 
+\[
+\frac{a_{N+1}}{s_{N+1}} + \cdots + \frac{a_{N+k}}{s_{N+k}} \geq 1- \frac{s_{N}}{s_{N+k}}
+\]
+and deduce that $\sum \frac{a_n}{s_n}$ diverges.
+    \item[(c)] Prove that
+\[
+\frac{a_n}{s_n^2} \leq \frac{1}{s_{n-1}}-\frac{1}{s_n}
+\]
+and deduce that $\sum \frac{a_n}{s_n^2}$ converges.
+    \item[(d)] What can be said about
+\[
+\sum \frac{a_n}{1+na_n} \text{ and } \sum \frac{a_n}{1+n^2a_n} ?
+\]
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+\begin{enumerate}
+    \item[(a)] Assume $a_n$ diverges. 
+If $\{n_i\}$ is a sequence of positive integers with $n_1<n_2<n_3<\cdots$, then we have
+\[
+\sum_{i=1}^{n_k} \frac{a_i}{1+a_i} \geq \sum_{i=1}^k \frac{a_{n_i}}{1+a_{n_i}}.
+\]
+
+Since $a_n$ diverges, we have $0<s=\limsup_{n \to \infty} a_n \leq \infty$. 
+Pick a subsequence $\{a_{n_i}\}_{i \in \N}$ such that $a_{n_i} \to s$ and let $k \to \infty$.
+Then right side of the last inequality diverges, since $\frac{a_{n_i}}{1+a_{n_i}}$ does not converge to $0$.
+Hence left hand side diverges.
+
+Next, assume $a_n$ converges and let $a_n \to 0$. (Otherwise, $\sum \frac{a_n}{1+a_n}$ diverges.)
+Then there exists an integer $N_1$ such that $|a_n|<1/2$ for $n \geq N_1$.
+
+Suppose, for a contradiction, that $\sum \frac{a_n}{1+a_n}$ converges.
+Let $\varepsilon>0$ be given. 
+Choose an integer $N_2$ such that 
+\[
+m \geq n \geq N_2 \text{ implies } \sum_{k=n}^m\frac{a_k}{1+a_k}  \leq \varepsilon/2.
+\]
+
+Now, let $N= \max \{N_1,N_2\}$ and let $\alpha= \sup_{k \geq N} a_k$.
+If $m \geq n \geq N$ then
+\begin{align*}
+    \frac{a_n}{1+a_n}+ \cdots +\frac{a_m}{1+a_m}  &\geq \frac{1}{1+\alpha}(a_n+ \cdots +a_m) \\
+    &=\frac{1}{1+\alpha} \sum_{k=n}^m a_k,
+\end{align*}
+hence 
+\[
+\sum_{k=n}^m a_k \leq \frac{1+\alpha}{2} \varepsilon \leq \varepsilon.
+\]
+This contradicts our hypothesis that $\sum a_n$ diverges.
+
+\item[(b)] Since $a_n>0$, we have
+\begin{align*}
+\frac{a_{N+1}}{s_{N+1}}+ \cdots +\frac{a_{N+k}}{s_{N+k}} &\geq \frac{a_{N+1}+ \cdots a_{N+k}}{s_{N+k}} \\
+&=\frac{s_{N+k}-s_N}{s_{N+k}} \\
+&= 1-\frac{s_N}{s_{N+k}}.
+\end{align*}
+for every positive integer $N$.
+This yields the desired inequality.
+
+Suppose $\sum \frac{a_n}{s_n}$ converges.
+Choose an integer $N$ such that $m \geq n \geq N$ implies 
+\[
+\sum_{k=n}^m \frac{a_k}{s_k} \leq 1/2.
+\]
+Hence we have
+\[
+1-\frac{s_N}{s_{N+k}} \leq \frac{a_{N+1}}{s_{N+1}} + \cdots + \frac{a_{N+k}}{s_{N+k}}
+\]
+for fixed $N$ and for all $k \in \N$.
+Letting $k \to \infty$, we obtain $1 \leq \frac{1}{2}$, a contradiction.
+
+\item[(c)] Observe that
+\begin{align*}
+    \frac{a_n}{s_n^2} &\leq \frac{a_n}{s_{n-1}s_n} \\
+    &= \frac{a_n}{s_n-s_{n-1}}\left(\frac{1}{s_{n-1}}-\frac{1}{s_n}\right) \\
+    &=\frac{1}{s_{n-1}}-\frac{1}{s_n}.
+\end{align*}
+Taking summation from $n=2$ of both sides and letting $n \to \infty$, by telescoping, we conclude that $\sum \frac{a_n}{s_n^2}$ converges.
+
+\item[(d)] We first prove that the latter one converges.
+Observe that
+\[
+\frac{a_n}{1+n^2a_n} \leq \frac{a_n}{n^2a_n}=\frac{1}{n^2},
+\]
+which implies that $\sum \frac{a_n}{1+n^2a_n}$ converges.
+
+However, there is nothing that we can say about the former one.
+For instance, if we put $a_n=\frac{1}{n}$ then $\sum \frac{a_n}{1+na_n}=\sum \frac{1}{2n}$ diverges. 
+But if we take $a_{m^2}=1/m$ for $m=1,2,3, \ldots$, while $a_n=2^{-n}$ if $n$ is not a square, then the sum converges.\footnote{The last example is from this: https://math.stackexchange.com/questions/237691/baby-rudin-chapter-3-exercise-11d}
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}
 suppose $\{p_n\}$ is a Cauchy sequence in a metric space $X$, and some subsequence $\{p_{n_i}\}$ converges to a point $p \in X$.
 Prove that the full sequence $\{p_n\}$ converges to $p$.
 \end{exercise}
