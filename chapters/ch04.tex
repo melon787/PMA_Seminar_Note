@@ -3,3 +3,68 @@
 \section{Continuity}
 \subsection*{Exercises}
 \addcontentsline{toc}{subsection}{Exercises}
+
+\begin{exercise}
+Let $f$ be a continuous real function on a metric space $X$.
+Let $Z(f)$ (the \emph{zero set} of $f$) be the set of all $p \in X$ at which $f(p)=0$.
+Prove that $Z(f)$ is closed.
+\end{exercise}
+\begin{proof}
+Let $W$ be a complement of $Z(f)$ in $X$.
+We prove that $W$ is open.
+
+Suppose $p \in W$.
+Then we have $f(p) \neq 0$, or equivalently, $|f(p)| >0$.
+Let $V$ be a neighborhood of $f(p)$ whose radius equals $\frac{|f(p)|}{2}$.
+Since $V$ is open in $\R$ and $f$ is continuous, $f^{-1}(V)$ is also open in $X$.
+
+Now, choose a neighborhood $N$ of $p$ such that $N \subset f^{-1}(V)$.
+Since $f^{-1}(V)$ is a subset of $W$, it follows that $p$ is an interior point of $W$.
+Since $p \in W$ was arbitrary, this proves that $W$ is open.
+We conclude that $Z(f)$ is closed in $X$.
+\end{proof}
+
+\begin{exercise}
+Let $f$ and $g$ be continuous mappings of a metric space $X$ into a metric space $Y$, and let $E$ be a dense subset of $X$.
+Prove that $f(E)$ is dense in $f(X)$.
+If $g(p)=f(p)$ for all $p \in E$, prove that $g(p)=f(p)$ for all $p \in X$.
+(In other words, a continuous mapping is determined by its values on a dense subset of its domain.)
+\end{exercise}
+\begin{proof}
+We first prove that $f(E)$ is dense in $f(X)$.
+Let $q \in f(X)$ be arbitrary.
+We need to prove that $q$ is a point of $f(E)$, or a limit point of $f(E)$.
+
+If $q \in f(E)$ then we are done.
+
+Suppose $q \notin f(E)$ and pick a point $p \in X$ such that $f(p)=q$.
+Since $E$ is dense in $X$, we have $p \in E$ or $p \in E'$.
+Since $p \notin E$ (for otherwise, $q=f(p) \in f(E)$), we see that $p$ is a limit point of $E$.
+
+By continuity of $f$, we obtain $f(x) \to f(p)$ as $x \to p$.
+Now, choose a sequence $\{x_n\}$ in $E$ such that $x_n \neq p$ and $x_n \to p$.
+Then $f(x_n) \to f(p)$.
+Hence, for every $\varepsilon>0$, there exists a point $x_n \in E$ such that 
+\[
+d_Y(f(x_n),f(p))<\varepsilon.
+\]
+Since $f(p) \notin f(E)$, it follows that $f(x_n) \neq f(p)$ for each positive integer $n$.
+Therefore, $q=f(p)$ is a limit point of $f(E)$.
+
+We conclude that $f(E)$ is dense in $f(X)$.
+
+Next, suppose $g(p)=f(p)$ for all $p \in E$, where $f$ and $g$ are continuous mappings of $X$ into $Y$.
+We need to prove that $f(p)=g(p)$ for $p \in X$.
+
+Let $p \in X$.
+Since $E$ is dense in $X$, $p \in E$ or $p \in E'$ for every point $p \in X$.
+
+If $p \in E$ then there is nothing to prove.
+
+If $p \in E'$ then $f(x) \to f(p)$ and $g(x) \to g(p)$ as $x \to p$, since $f$ and $g$ are continuous.
+Now choose a sequence $\{y_n\}$ in $E$ such that $y_n \neq p$ and $y_n \to p$.
+Since $y_n \in E$ for every positive integer $n$, we have $g(y_n)=f(y_n)$ by our hypothesis.
+Letting $n \to \infty$, we obtain $g(p)=f(p)$.
+
+This completes the proof.
+\end{proof}
