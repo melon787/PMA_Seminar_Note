@@ -1,18 +1,28 @@
-# PMA Seminar Notes
+# PMA Exercises
 
-Seminar notes based on Walter Rudin's *Principles of Mathematical Analysis*.
+Exercise statements and solutions based on Walter Rudin's *Principles of Mathematical Analysis*.
 
-## Latest PDF
+## Files
 
-[View the latest PDF](build/main.pdf)
+- `main.tex`: Main exercise document.
+- `chapters/`: Add exercises and solutions to the corresponding chapter file.
+- `preamble.tex`: Packages, theorem environments, and custom commands.
+- `build/main.pdf`: Compiled exercise document.
 
-## Structure
+The concept notes are archived separately in `../LaTeX/PMA_Notes/`. This project compiles independently of that folder.
 
-- `main.tex`: Main document
-- `preamble.tex`: Packages, theorem environments, and custom commands
-- `chapters/`: Source files for individual chapters
-- `build/main.pdf`: Compiled seminar notes
+## Build
 
-## Status
+Use the existing editor workflow, or run from this directory:
 
-Work in progress.
+```sh
+latexmk -pdf -synctex=1 -outdir=build main.tex
+```
+
+[View the exercise PDF](build/main.pdf)
+
+## Adding exercises
+
+Continue editing the files in `chapters/`. To add another chapter, create its TeX file there and add its `\input` to `main.tex`.
+
+Theorem citations use the manually entered book numbers. Equation and footnote numbers start at 1 and are assigned automatically within this document; use `\label` and `\eqref` for equation references.
