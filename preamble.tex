@@ -15,7 +15,17 @@
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{example}[definition]{Example}
-\newtheorem{exercise}{Exercise}
+\newtheorem{exercise}{Exercise}[section]
+
+% Write the book's exercise number directly: \begin{exercise}{20}.
+\let\pmaexercise\exercise
+\let\endpmaexercise\endexercise
+\renewenvironment{exercise}[1]{%
+  \setcounter{exercise}{\numexpr#1-1\relax}%
+  \pmaexercise
+}{%
+  \endpmaexercise
+}
 
 \theoremstyle{plain}
 \newtheorem{theorem}[definition]{Theorem}

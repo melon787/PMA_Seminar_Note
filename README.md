@@ -25,4 +25,18 @@ latexmk -pdf -synctex=1 -outdir=build main.tex
 
 Continue editing the files in `chapters/`. To add another chapter, create its TeX file there and add its `\input` to `main.tex`.
 
+Enter the book's exercise number directly in the environment. For example, inside Chapter 2:
+
+```tex
+\begin{exercise}{20}
+Exercise statement.
+\end{exercise}
+
+\begin{proof}
+Solution.
+\end{proof}
+```
+
+This displays **Exercise 2.20.** The chapter number comes from the current section. No separate numbering command is needed.
+
 Theorem citations use the manually entered book numbers. Equation and footnote numbers start at 1 and are assigned automatically within this document; use `\label` and `\eqref` for equation references.
